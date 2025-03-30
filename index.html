@@ -3,28 +3,69 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Portfolio</title>
+    <title>yeahbois2702's Portfolio</title>
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body class="bg-gray-100 text-gray-900">
+    <!-- Navbar -->
     <nav class="bg-blue-600 text-white p-4">
         <div class="container mx-auto flex justify-between items-center">
-            <h1 class="text-xl font-bold">My Portfolio</h1>
+            <h1 class="text-xl font-bold">yeahbois2702</h1>
             <ul class="flex space-x-4">
-                <li><a href="index.html" class="hover:underline">Home</a></li>
-                <li><a href="about.html" class="hover:underline">About</a></li>
-                <li><a href="projects.html" class="hover:underline">Projects</a></li>
-                <li><a href="contact.html" class="hover:underline">Contact</a></li>
+                <li><a href="#projects" class="hover:underline">Projects</a></li>
+                <li><a href="#skills" class="hover:underline">Skills</a></li>
+                <li><a href="#contact" class="hover:underline">Contact</a></li>
             </ul>
         </div>
     </nav>
 
+    <!-- Hero Section -->
     <header class="text-center py-20">
-        <h1 class="text-5xl font-bold">Hello</h1>
-        <p class="text-lg text-gray-700 mt-4">A passionate developer and tech enthusiast.</p>
-        <a href="projects.html" class="mt-6 inline-block px-6 py-3 bg-blue-600 text-white rounded-lg shadow-lg hover:bg-blue-700">
+        <h1 class="text-5xl font-bold">Hi, I'm yeahbois2702</h1>
+        <p class="text-lg text-gray-700 mt-4">Software Developer | Machine Learning Enthusiast</p>
+        <a href="#projects" class="mt-6 inline-block px-6 py-3 bg-blue-600 text-white rounded-lg shadow-lg hover:bg-blue-700">
             View My Work
         </a>
     </header>
+
+    <!-- Projects Section -->
+    <section id="projects" class="container mx-auto py-12">
+        <h2 class="text-3xl font-bold text-center mb-6">Projects</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <!-- Project 1 -->
+            <div class="bg-white p-6 rounded-lg shadow">
+                <h3 class="text-xl font-bold">FaldaBot</h3>
+                <p class="text-gray-700 mt-2">A multipurpose Discord bot with fun, economy, and moderation features.</p>
+                <a href="https://github.com/yeahbois2702/FaldaBot" class="text-blue-600 mt-4 block hover:underline">View on GitHub →</a>
+            </div>
+            <!-- Project 2 -->
+            <div class="bg-white p-6 rounded-lg shadow">
+                <h3 class="text-xl font-bold">Ignotum</h3>
+                <p class="text-gray-700 mt-2">A full-stack social media website built with Express.js and MongoDB.</p>
+                <a href="https://github.com/yeahbois2702/Ignotum" class="text-blue-600 mt-4 block hover:underline">View on GitHub →</a>
+            </div>
+            <!-- Add more projects here -->
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="container mx-auto py-12">
+        <h2 class="text-3xl font-bold text-center mb-6">Skills</h2>
+        <div class="flex flex-wrap justify-center gap-4">
+            <span class="bg-blue-200 text-blue-900 px-4 py-2 rounded">Python</span>
+            <span class="bg-blue-200 text-blue-900 px-4 py-2 rounded">Machine Learning</span>
+            <span class="bg-blue-200 text-blue-900 px-4 py-2 rounded">JavaScript</span>
+            <span class="bg-blue-200 text-blue-900 px-4 py-2 rounded">SQL</span>
+            <span class="bg-blue-200 text-blue-900 px-4 py-2 rounded">React.js</span>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="container mx-auto py-12 text-center">
+        <h2 class="text-3xl font-bold">Contact</h2>
+        <p class="text-gray-700 mt-4">Let's connect! Reach me at:</p>
+        <p class="text-lg font-semibold mt-2">your-email@example.com</p>
+        <p class="text-lg font-semibold">GitHub: <a href="https://github.com/yeahbois2702" class="text-blue-600 hover:underline">github.com/yeahbois2702</a></p>
+    </section>
 </body>
 </html>
