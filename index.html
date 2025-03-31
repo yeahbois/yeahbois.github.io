@@ -1,48 +1,63 @@
 <!DOCTYPE html>
-    <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Portfolio</title>
-        <script src="https://cdn.tailwindcss.com"></script>
-        <link rel="preconnect" href="https://fonts.googleapis.com">
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=Courier+Prime:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
-        <link rel="stylesheet" href="styles.css">
-        <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
-    </head>
-    <body>
-        <nav>
-            <div class="hamburger-menu">☰</div>
-            <ul class="nav-links">
-                <li><a href="#">Home</a></li>
-                <li><a href="#">Case Studies</a></li>
-                <li><a href="#">Testimonials</a></li>
-                <li><a href="#">Recent Work</a></li>
-                <li><a href="#">Get In Touch</a></li>
-            </ul>
-        </nav>
-        <div class="social-media" id="mobile-menu">
-            <a href="#" class="social-icon"><i class="fab fa-linkedin"></i></a>
-            <a href="#" class="social-icon"><i class="fab fa-behance"></i></a>
-            <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Courier+Prime:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+</head>
+<body class="bg-black text-white font-[Courier Prime]">
+
+    <!-- Navbar -->
+    <nav class="bg-gray-900 p-4 mx-4 my-4 rounded-lg flex justify-between items-center">
+        <button id="menu-toggle" class="text-white text-2xl sm:hidden">
+            ☰
+        </button>
+        <ul class="hidden sm:flex space-x-6">
+            <li><a href="#" class="text-gray-300 hover:text-white">Home</a></li>
+            <li><a href="#" class="text-gray-300 hover:text-white">Case Studies</a></li>
+            <li><a href="#" class="text-gray-300 hover:text-white">Testimonials</a></li>
+            <li><a href="#" class="text-gray-300 hover:text-white">Recent Work</a></li>
+            <li><a href="#" class="text-gray-300 hover:text-white">Get In Touch</a></li>
+        </ul>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div id="mobile-menu" class="hidden flex flex-col items-center bg-gray-800 p-4 rounded-lg">
+        <a href="#" class="text-white text-2xl"><i class="fab fa-linkedin"></i></a>
+        <a href="#" class="text-white text-2xl"><i class="fab fa-behance"></i></a>
+        <a href="#" class="text-white text-2xl"><i class="fab fa-twitter"></i></a>
+    </div>
+
+    <!-- Intro Section -->
+    <header class="flex flex-col items-center justify-center min-h-screen text-center">
+        <h1 class="text-4xl font-bold mb-4">Your Name Here</h1>
+        <p class="text-gray-400 mb-8">Intro text: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+        <button class="bg-green-600 text-white py-2 px-6 rounded-full hover:bg-green-700 focus:outline-none">
+            Let’s get started
+        </button>
+
+        <!-- Tech Logos -->
+        <div class="mt-8 flex flex-wrap justify-center space-x-4 text-5xl">
+            <i class="fab fa-html5 text-orange-500"></i>
+            <i class="fab fa-css3-alt text-blue-500"></i>
+            <i class="fab fa-js text-yellow-500"></i>
+            <i class="fab fa-react text-blue-400"></i>
+            <i class="fab fa-python text-blue-300"></i>
+            <i class="fab fa-php text-indigo-500"></i>
+            <i class="fab fa-r-project text-blue-600"></i>
+            <i class="fab fa-rust text-orange-700"></i>
         </div>
-        <header>
-            <div class="intro" style="font-family: 'Courier Prime', monospace;">
-                <h1>Your Name Here</h1>
-                <p>Intro text: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-                <button>Let's get started ></button>
-            </div>
-            <div class="tech-logos">
-                <i class="fab fa-html5"></i>
-                <i class="fab fa-css3-alt"></i>
-                <i class="fab fa-js"></i>
-                <i class="fab fa-react"></i>
-                <i class="fab fa-python"></i>
-                <i class="fab fa-php"></i>
-                <i class="fab fa-r-project"></i>
-                <i class="fab fa-rust"></i>
-            </div>
-        </header>
-    </body>
+    </header>
+
+    <script>
+        document.getElementById("menu-toggle").addEventListener("click", function () {
+            document.getElementById("mobile-menu").classList.toggle("hidden");
+        });
+    </script>
+</body>
 </html>
