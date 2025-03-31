@@ -8,38 +8,100 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Courier+Prime:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/js/all.min.js" crossorigin="anonymous"></script>
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
     <style>
-        .bg-icons {
+        html {
+            scroll-behavior: smooth;
+        }
+        .background-icons {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: -1;
+        }
+        .background-icons i {
             position: absolute;
-            font-size: 5rem;
             opacity: 0.1;
+            font-size: 4rem;
+            transform: rotate(calc(-80deg + (160 * random())));
         }
     </style>
 </head>
-<body class="bg-black text-white relative overflow-hidden">
+<body class="bg-gray-900 text-white font-mono">
+    <nav class="fixed top-0 left-0 w-full bg-gray-800 p-4 flex justify-between items-center z-50">
+        <div class="text-xl">Portfolio</div>
+        <div class="md:hidden cursor-pointer" id="hamburger">☰</div>
+        <ul class="hidden md:flex space-x-6">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#skills">Skills</a></li>
+            <li><a href="#recent-work">Recent Work</a></li>
+            <li><a href="#contact">Get in Touch</a></li>
+        </ul>
+    </nav>
     
-    <!-- Background Tech Icons -->
-    <div class="absolute inset-0 pointer-events-none">
-        <i class="fab fa-html5 bg-icons" style="top:10%; left:5%; transform:rotate(30deg);"></i>
-        <i class="fab fa-css3-alt bg-icons" style="top:20%; right:15%; transform:rotate(-20deg);"></i>
-        <i class="fab fa-js bg-icons" style="bottom:25%; left:10%; transform:rotate(50deg);"></i>
-        <i class="fab fa-react bg-icons" style="top:50%; right:5%; transform:rotate(-35deg);"></i>
-        <i class="fab fa-python bg-icons" style="bottom:10%; left:50%; transform:rotate(15deg);"></i>
-        <i class="fab fa-php bg-icons" style="top:15%; left:60%; transform:rotate(-45deg);"></i>
-        <i class="fab fa-r-project bg-icons" style="bottom:40%; right:20%; transform:rotate(70deg);"></i>
-        <i class="fab fa-rust bg-icons" style="top:70%; left:30%; transform:rotate(-10deg);"></i>
+    <div class="background-icons">
+        <i class="fab fa-html5" style="top:10%; left:5%;"></i>
+        <i class="fab fa-css3-alt" style="top:50%; left:80%;"></i>
+        <i class="fab fa-js" style="top:30%; left:30%;"></i>
+        <i class="fab fa-react" style="top:70%; left:60%;"></i>
+        <i class="fab fa-python" style="top:40%; left:10%;"></i>
+        <i class="fab fa-php" style="top:60%; left:50%;"></i>
     </div>
     
-    <!-- Content -->
-    <header class="flex flex-col items-center justify-center min-h-screen text-center relative z-10">
-        <div class="intro" style="font-family: 'Courier Prime', monospace;">
-            <h1 class="text-4xl font-bold mb-4">Your Name Here</h1>
-            <p class="text-gray-400 mb-8">Intro text: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-            <button class="bg-green-600 text-white py-2 px-6 rounded-full hover:bg-green-700">
-                Let’s get started
-            </button>
+    <section id="home" class="h-screen flex items-center justify-center">
+        <h1 class="text-5xl">Welcome to My Portfolio</h1>
+    </section>
+    
+    <section id="projects" class="h-screen p-10">
+        <h2 class="text-3xl">Projects</h2>
+        <div class="flex overflow-x-auto space-x-4 p-5">
+            <div class="w-64 bg-gray-700 p-4 rounded-md">
+                <h3>Ignotum</h3>
+                <p>Social media website built using full-stack development.</p>
+                <a href="#">View More</a>
+            </div>
+            <div class="w-64 bg-gray-700 p-4 rounded-md">
+                <h3>FaldaBot</h3>
+                <p>Multipurpose Discord bot with fun features.</p>
+                <a href="#">GitHub</a>
+            </div>
         </div>
-    </header>
+    </section>
+    
+    <section id="skills" class="h-screen p-10">
+        <h2 class="text-3xl">Skills</h2>
+        <div class="flex overflow-x-auto space-x-4 p-5">
+            <div class="w-32 bg-gray-700 p-4 rounded-md">Python</div>
+            <div class="w-32 bg-gray-700 p-4 rounded-md">JavaScript</div>
+        </div>
+    </section>
+    
+    <section id="recent-work" class="h-screen p-10">
+        <h2 class="text-3xl">Recent Work</h2>
+        <div class="w-64 bg-gray-700 p-4 rounded-md">
+            <h3>ShopSeer</h3>
+            <p>My newest machine learning project.</p>
+        </div>
+    </section>
+    
+    <section id="contact" class="h-screen p-10">
+        <h2 class="text-3xl">Get in Touch</h2>
+        <div class="flex overflow-x-auto space-x-4 p-5">
+            <div class="w-64 bg-gray-700 p-4 rounded-md">
+                <h3>LinkedIn</h3>
+                <a href="#">Profile</a>
+            </div>
+        </div>
+    </section>
+    
+    <script>
+        document.getElementById('hamburger').addEventListener('click', function() {
+            document.querySelector('nav ul').classList.toggle('hidden');
+        });
+    </script>
 </body>
 </html>
