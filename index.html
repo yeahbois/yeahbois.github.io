@@ -8,16 +8,16 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Courier+Prime:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
-    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/js/all.min.js" crossorigin="anonymous"></script>
 </head>
-<body class="bg-black text-white font-[Courier Prime]">
+<body class="bg-black text-white">
 
     <!-- Navbar -->
-    <nav class="bg-gray-900 p-4 mx-4 my-4 rounded-lg flex justify-between items-center">
+    <nav class="flex justify-between items-center p-4 bg-gray-900">
         <button id="menu-toggle" class="text-white text-2xl sm:hidden">
             ☰
         </button>
-        <ul class="hidden sm:flex space-x-6">
+        <ul id="nav-links" class="hidden sm:flex space-x-6">
             <li><a href="#" class="text-gray-300 hover:text-white">Home</a></li>
             <li><a href="#" class="text-gray-300 hover:text-white">Case Studies</a></li>
             <li><a href="#" class="text-gray-300 hover:text-white">Testimonials</a></li>
@@ -26,8 +26,8 @@
         </ul>
     </nav>
 
-    <!-- Mobile Menu -->
-    <div id="mobile-menu" class="hidden flex flex-col items-center bg-gray-800 p-4 rounded-lg">
+    <!-- Mobile Social Media Menu -->
+    <div id="mobile-menu" class="hidden flex flex-col items-center bg-gray-800 p-4">
         <a href="#" class="text-white text-2xl"><i class="fab fa-linkedin"></i></a>
         <a href="#" class="text-white text-2xl"><i class="fab fa-behance"></i></a>
         <a href="#" class="text-white text-2xl"><i class="fab fa-twitter"></i></a>
@@ -35,11 +35,13 @@
 
     <!-- Intro Section -->
     <header class="flex flex-col items-center justify-center min-h-screen text-center">
-        <h1 class="text-4xl font-bold mb-4">Your Name Here</h1>
-        <p class="text-gray-400 mb-8">Intro text: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-        <button class="bg-green-600 text-white py-2 px-6 rounded-full hover:bg-green-700 focus:outline-none">
-            Let’s get started
-        </button>
+        <div class="intro" style="font-family: 'Courier Prime', monospace;">
+            <h1 class="text-4xl font-bold mb-4">Your Name Here</h1>
+            <p class="text-gray-400 mb-8">Intro text: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+            <button class="bg-green-600 text-white py-2 px-6 rounded-full hover:bg-green-700">
+                Let’s get started
+            </button>
+        </div>
 
         <!-- Tech Logos -->
         <div class="mt-8 flex flex-wrap justify-center space-x-4 text-5xl">
