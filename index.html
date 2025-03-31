@@ -9,32 +9,30 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Courier+Prime:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/js/all.min.js" crossorigin="anonymous"></script>
+    <style>
+        .bg-icons {
+            position: absolute;
+            font-size: 5rem;
+            opacity: 0.1;
+        }
+    </style>
 </head>
-<body class="bg-black text-white">
-
-    <!-- Navbar -->
-    <nav class="flex justify-between items-center p-4 bg-gray-900">
-        <button id="menu-toggle" class="text-white text-2xl sm:hidden">
-            ☰
-        </button>
-        <ul id="nav-links" class="hidden sm:flex space-x-6">
-            <li><a href="#" class="text-gray-300 hover:text-white">Home</a></li>
-            <li><a href="#" class="text-gray-300 hover:text-white">Case Studies</a></li>
-            <li><a href="#" class="text-gray-300 hover:text-white">Testimonials</a></li>
-            <li><a href="#" class="text-gray-300 hover:text-white">Recent Work</a></li>
-            <li><a href="#" class="text-gray-300 hover:text-white">Get In Touch</a></li>
-        </ul>
-    </nav>
-
-    <!-- Mobile Social Media Menu -->
-    <div id="mobile-menu" class="hidden flex flex-col items-center bg-gray-800 p-4">
-        <a href="#" class="text-white text-2xl"><i class="fab fa-linkedin"></i></a>
-        <a href="#" class="text-white text-2xl"><i class="fab fa-behance"></i></a>
-        <a href="#" class="text-white text-2xl"><i class="fab fa-twitter"></i></a>
+<body class="bg-black text-white relative overflow-hidden">
+    
+    <!-- Background Tech Icons -->
+    <div class="absolute inset-0 pointer-events-none">
+        <i class="fab fa-html5 bg-icons" style="top:10%; left:5%; transform:rotate(30deg);"></i>
+        <i class="fab fa-css3-alt bg-icons" style="top:20%; right:15%; transform:rotate(-20deg);"></i>
+        <i class="fab fa-js bg-icons" style="bottom:25%; left:10%; transform:rotate(50deg);"></i>
+        <i class="fab fa-react bg-icons" style="top:50%; right:5%; transform:rotate(-35deg);"></i>
+        <i class="fab fa-python bg-icons" style="bottom:10%; left:50%; transform:rotate(15deg);"></i>
+        <i class="fab fa-php bg-icons" style="top:15%; left:60%; transform:rotate(-45deg);"></i>
+        <i class="fab fa-r-project bg-icons" style="bottom:40%; right:20%; transform:rotate(70deg);"></i>
+        <i class="fab fa-rust bg-icons" style="top:70%; left:30%; transform:rotate(-10deg);"></i>
     </div>
-
-    <!-- Intro Section -->
-    <header class="flex flex-col items-center justify-center min-h-screen text-center">
+    
+    <!-- Content -->
+    <header class="flex flex-col items-center justify-center min-h-screen text-center relative z-10">
         <div class="intro" style="font-family: 'Courier Prime', monospace;">
             <h1 class="text-4xl font-bold mb-4">Your Name Here</h1>
             <p class="text-gray-400 mb-8">Intro text: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
@@ -42,24 +40,6 @@
                 Let’s get started
             </button>
         </div>
-
-        <!-- Tech Logos -->
-        <div class="mt-8 flex flex-wrap justify-center space-x-4 text-5xl">
-            <i class="fab fa-html5 text-orange-500"></i>
-            <i class="fab fa-css3-alt text-blue-500"></i>
-            <i class="fab fa-js text-yellow-500"></i>
-            <i class="fab fa-react text-blue-400"></i>
-            <i class="fab fa-python text-blue-300"></i>
-            <i class="fab fa-php text-indigo-500"></i>
-            <i class="fab fa-r-project text-blue-600"></i>
-            <i class="fab fa-rust text-orange-700"></i>
-        </div>
     </header>
-
-    <script>
-        document.getElementById("menu-toggle").addEventListener("click", function () {
-            document.getElementById("mobile-menu").classList.toggle("hidden");
-        });
-    </script>
 </body>
 </html>
