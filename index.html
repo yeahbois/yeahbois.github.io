@@ -3,69 +3,60 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>yeahbois2702's Portfolio</title>
+    <title>Profile Page</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+        }
+    </style>
 </head>
-<body class="bg-gray-100 text-gray-900">
+<body class="bg-black text-white">
+
     <!-- Navbar -->
-    <nav class="bg-blue-600 text-white p-4">
-        <div class="container mx-auto flex justify-between items-center">
-            <h1 class="text-xl font-bold">yeahbois2702</h1>
-            <ul class="flex space-x-4">
-                <li><a href="#projects" class="hover:underline">Projects</a></li>
-                <li><a href="#skills" class="hover:underline">Skills</a></li>
-                <li><a href="#contact" class="hover:underline">Contact</a></li>
-            </ul>
+    <nav class="bg-gray-900 p-4 sm:px-8 mx-4 sm:mx-8 my-4 rounded-lg sm:rounded-3xl flex justify-between items-center">
+        <div class="flex space-x-4 sm:space-x-6">
+            <a class="text-gray-300 hover:text-white" href="#">Home</a>
+            <a class="text-gray-300 hover:text-white" href="#">Case Studies</a>
+            <a class="text-gray-300 hover:text-white" href="#">Testimonials</a>
+            <a class="text-gray-300 hover:text-white" href="#">Recent Work</a>
+            <a class="text-gray-300 hover:text-white hidden sm:inline" href="#">Get In Touch</a>
+        </div>
+        <div class="flex space-x-4 sm:space-x-6">
+            <a class="text-gray-300 hover:text-white" href="#"><i class="fab fa-linkedin"></i></a>
+            <a class="text-gray-300 hover:text-white" href="#"><i class="fab fa-behance"></i></a>
+            <a class="text-gray-300 hover:text-white" href="#"><i class="fab fa-twitter"></i></a>
+            <button class="text-gray-300 hover:text-white sm:hidden" id="menu-toggle">
+                <i class="fas fa-bars"></i>
+            </button>
         </div>
     </nav>
 
-    <!-- Hero Section -->
-    <header class="text-center py-20">
-        <h1 class="text-5xl font-bold">Hi, I'm yeahbois2702</h1>
-        <p class="text-lg text-gray-700 mt-4">Software Developer | Machine Learning Enthusiast</p>
-        <a href="#projects" class="mt-6 inline-block px-6 py-3 bg-blue-600 text-white rounded-lg shadow-lg hover:bg-blue-700">
-            View My Work
-        </a>
-    </header>
+    <!-- Mobile Menu (Hidden by default) -->
+    <div class="hidden sm:hidden bg-gray-900 p-4 mx-4 rounded-lg flex flex-col space-y-4" id="mobile-menu">
+        <a class="text-gray-300 hover:text-white" href="#">Get In Touch</a>
+    </div>
 
-    <!-- Projects Section -->
-    <section id="projects" class="container mx-auto py-12">
-        <h2 class="text-3xl font-bold text-center mb-6">Projects</h2>
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            <!-- Project 1 -->
-            <div class="bg-white p-6 rounded-lg shadow">
-                <h3 class="text-xl font-bold">FaldaBot</h3>
-                <p class="text-gray-700 mt-2">A multipurpose Discord bot with fun, economy, and moderation features.</p>
-                <a href="https://github.com/yeahbois2702/FaldaBot" class="text-blue-600 mt-4 block hover:underline">View on GitHub →</a>
-            </div>
-            <!-- Project 2 -->
-            <div class="bg-white p-6 rounded-lg shadow">
-                <h3 class="text-xl font-bold">Ignotum</h3>
-                <p class="text-gray-700 mt-2">A full-stack social media website built with Express.js and MongoDB.</p>
-                <a href="https://github.com/yeahbois2702/Ignotum" class="text-blue-600 mt-4 block hover:underline">View on GitHub →</a>
-            </div>
-            <!-- Add more projects here -->
+    <!-- Main Content -->
+    <div class="flex flex-col items-center justify-center min-h-screen px-4 sm:px-8">
+        <div class="text-center">
+            <h1 class="text-4xl font-bold mb-4">Your Name Here</h1>
+            <p class="text-gray-400 mb-8">
+                Intro text: Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+            </p>
+            <button class="bg-green-600 text-white py-2 px-4 rounded-full hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-opacity-50">
+                Let’s get started
+            </button>
         </div>
-    </section>
+    </div>
 
-    <!-- Skills Section -->
-    <section id="skills" class="container mx-auto py-12">
-        <h2 class="text-3xl font-bold text-center mb-6">Skills</h2>
-        <div class="flex flex-wrap justify-center gap-4">
-            <span class="bg-blue-200 text-blue-900 px-4 py-2 rounded">Python</span>
-            <span class="bg-blue-200 text-blue-900 px-4 py-2 rounded">Machine Learning</span>
-            <span class="bg-blue-200 text-blue-900 px-4 py-2 rounded">JavaScript</span>
-            <span class="bg-blue-200 text-blue-900 px-4 py-2 rounded">SQL</span>
-            <span class="bg-blue-200 text-blue-900 px-4 py-2 rounded">React.js</span>
-        </div>
-    </section>
+    <script>
+        document.getElementById('menu-toggle').addEventListener('click', function () {
+            document.getElementById('mobile-menu').classList.toggle('hidden');
+        });
+    </script>
 
-    <!-- Contact Section -->
-    <section id="contact" class="container mx-auto py-12 text-center">
-        <h2 class="text-3xl font-bold">Contact</h2>
-        <p class="text-gray-700 mt-4">Let's connect! Reach me at:</p>
-        <p class="text-lg font-semibold mt-2">your-email@example.com</p>
-        <p class="text-lg font-semibold">GitHub: <a href="https://github.com/yeahbois2702" class="text-blue-600 hover:underline">github.com/yeahbois2702</a></p>
-    </section>
 </body>
 </html>
