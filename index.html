@@ -13,68 +13,98 @@
         body { font-family: 'Courier Prime', monospace; }
         .tech-bg i {
             position: absolute;
-            font-size: 5rem;
             opacity: 0.1;
-            transform: rotate(calc(var(--rotation) * 1deg));
+            font-size: 5rem;
+            transform: rotate(var(--rotation));
+        }
+        .flashcard-container {
+            display: flex;
+            overflow-x: auto;
+            gap: 1rem;
+            padding: 1rem;
+        }
+        .flashcard {
+            min-width: 250px;
+            background: white;
+            padding: 1rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
         }
     </style>
 </head>
-<body class="bg-gray-900 text-white">
-    <nav class="bg-gray-800 p-4 fixed w-full flex justify-between items-center z-50">
-        <div class="text-xl font-bold">Portfolio</div>
-        <div class="hidden md:flex space-x-6">
-            <a href="#home" class="nav-link">Home</a>
-            <a href="#projects" class="nav-link">Projects</a>
-            <a href="#skills" class="nav-link">Skills</a>
-            <a href="#recent" class="nav-link">Recent Work</a>
-            <a href="#contact" class="nav-link">Get in Touch</a>
-        </div>
-        <div class="md:hidden text-2xl cursor-pointer" id="hamburger">☰</div>
+<body class="bg-gray-900 text-white relative">
+    <!-- Navbar -->
+    <nav class="fixed top-0 left-0 w-full bg-gray-800 p-4 flex justify-between items-center z-50">
+        <div class="text-lg font-bold">Portfolio</div>
+        <ul class="hidden md:flex space-x-6">
+            <li><a href="#home" class="hover:text-gray-300">Home</a></li>
+            <li><a href="#projects" class="hover:text-gray-300">Projects</a></li>
+            <li><a href="#skills" class="hover:text-gray-300">Skills</a></li>
+            <li><a href="#recent" class="hover:text-gray-300">Recent Work</a></li>
+            <li><a href="#contact" class="hover:text-gray-300">Get in Touch</a></li>
+        </ul>
+        <div class="md:hidden cursor-pointer" id="menu-toggle">☰</div>
     </nav>
-    <div id="mobile-menu" class="hidden fixed top-16 left-0 w-full bg-gray-800 flex flex-col items-center p-4">
-        <a href="#projects" class="mobile-link">Projects</a>
-        <a href="#skills" class="mobile-link">Skills</a>
-        <a href="#recent" class="mobile-link">Recent Work</a>
-        <a href="#contact" class="mobile-link">Get in Touch</a>
+    <div class="hidden flex-col bg-gray-800 p-4 space-y-2 absolute w-full top-16 left-0" id="mobile-menu">
+        <a href="#projects">Projects</a>
+        <a href="#skills">Skills</a>
+        <a href="#recent">Recent Work</a>
+        <a href="#contact">Get in Touch</a>
     </div>
-    <section id="home" class="h-screen flex justify-center items-center">
-        <div>
-            <h1 class="text-5xl font-bold">Your Name Here</h1>
-            <p class="mt-4 text-lg">Welcome to my portfolio!</p>
+    
+    <!-- Tech Background -->
+    <div class="absolute inset-0 tech-bg">
+        <i class="fab fa-html5" style="top: 10%; left: 20%; --rotation: 30deg;"></i>
+        <i class="fab fa-css3-alt" style="top: 40%; left: 50%; --rotation: -20deg;"></i>
+        <i class="fab fa-js" style="top: 70%; left: 10%; --rotation: 45deg;"></i>
+        <i class="fab fa-react" style="top: 20%; right: 30%; --rotation: -30deg;"></i>
+        <i class="fab fa-python" style="top: 60%; right: 20%; --rotation: 10deg;"></i>
+    </div>
+    
+    <!-- Sections -->
+    <section id="projects" class="mt-20 p-10">
+        <h2 class="text-2xl font-bold">Projects</h2>
+        <div class="flashcard-container">
+            <div class="flashcard">Ignotum - A social media website <a href="#">(View)</a></div>
+            <div class="flashcard">FaldaBot - A multipurpose Discord bot <a href="#">(View)</a></div>
+            <div class="flashcard">Disdotjson - Discord bot with JSON <a href="#">(View)</a></div>
+            <div class="flashcard">ShopSeer - ML-based shopping tool <a href="#">(View)</a></div>
         </div>
     </section>
-    <section id="projects" class="h-screen p-8">
-        <h2 class="text-4xl font-bold">Projects</h2>
-        <div class="flex overflow-x-scroll">
-            <div class="w-80 bg-gray-700 m-4 p-4 rounded">FaldaBot</div>
-            <div class="w-80 bg-gray-700 m-4 p-4 rounded">Disdotjson</div>
-            <div class="w-80 bg-gray-700 m-4 p-4 rounded">ShopSeer</div>
-            <div class="w-80 bg-gray-700 m-4 p-4 rounded">Ignotum</div>
+    
+    <section id="skills" class="p-10">
+        <h2 class="text-2xl font-bold">Skills</h2>
+        <div class="flashcard-container">
+            <div class="flashcard">JavaScript</div>
+            <div class="flashcard">Python</div>
+            <div class="flashcard">React</div>
+            <div class="flashcard">Machine Learning</div>
         </div>
     </section>
-    <section id="skills" class="h-screen p-8">
-        <h2 class="text-4xl font-bold">Skills</h2>
-        <div class="flex overflow-x-scroll">
-            <i class="fab fa-js text-5xl mx-4"></i>
-            <i class="fab fa-react text-5xl mx-4"></i>
-            <i class="fab fa-python text-5xl mx-4"></i>
+    
+    <section id="recent" class="p-10">
+        <h2 class="text-2xl font-bold">Recent Work</h2>
+        <div class="flashcard">ShopSeer - My newest ML project</div>
+        <div class="flashcard">ThamNet - Student Council Blog Site</div>
+    </section>
+    
+    <section id="contact" class="p-10">
+        <h2 class="text-2xl font-bold">Get in Touch</h2>
+        <div class="flashcard-container">
+            <div class="flashcard">
+                <img src="#" alt="Profile" class="w-16 h-16 rounded-full">
+                <p>LinkedIn</p>
+            </div>
+            <div class="flashcard">
+                <img src="#" alt="Profile" class="w-16 h-16 rounded-full">
+                <p>GitHub</p>
+            </div>
         </div>
     </section>
-    <section id="recent" class="h-screen p-8">
-        <h2 class="text-4xl font-bold">Recent Work</h2>
-        <p>ShopSeer - AI-powered tool</p>
-        <p>Thamnet - Student Council Blog</p>
-    </section>
-    <section id="contact" class="h-screen p-8">
-        <h2 class="text-4xl font-bold">Get in Touch</h2>
-        <div class="flex space-x-4">
-            <a href="#"><i class="fab fa-linkedin text-5xl"></i></a>
-            <a href="#"><i class="fab fa-twitter text-5xl"></i></a>
-        </div>
-    </section>
+    
     <script>
-        document.getElementById('hamburger').addEventListener('click', () => {
-            document.getElementById('mobile-menu').classList.toggle('hidden');
+        document.getElementById("menu-toggle").addEventListener("click", function() {
+            document.getElementById("mobile-menu").classList.toggle("hidden");
         });
     </script>
 </body>
