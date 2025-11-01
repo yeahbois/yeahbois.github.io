@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
-  <title>3D Morph Portfolio</title>
-  <!-- Fixed CDN URLs (removed trailing spaces) -->
+  <title>Alex – 3D Portfolio</title>
+  <!-- Fixed CDN URLs (no trailing spaces!) -->
   <script src="https://cdn.tailwindcss.com"></script>
   <script src="https://unpkg.com/three@0.160.1/build/three.min.js"></script>
   <script src="https://unpkg.com/gsap@3.12.5/dist/gsap.min.js"></script>
@@ -17,6 +17,8 @@
       color: white;
       font-family: 'Inter', sans-serif;
     }
+
+    /* 3D Canvas Container */
     #canvas-container {
       position: fixed;
       top: 0;
@@ -26,53 +28,69 @@
       z-index: -1;
       pointer-events: none;
     }
-    .hero {
-      min-height: 100vh;
+
+    /* Main layout */
+    .layout {
       display: flex;
-      align-items: center;
-      padding: 2rem 2rem 2rem 5%;
+      min-height: 100vh;
+      padding: 4rem 2rem 2rem 5%;
       box-sizing: border-box;
-      position: relative;
-      z-index: 10;
+      max-width: 100%;
     }
-    .text-content {
+
+    .text-panel {
       flex: 1;
       max-width: 600px;
+      z-index: 10;
     }
-    .text-content h1 {
-      font-size: 2.5rem;
-      margin-bottom: 1rem;
+
+    .text-panel h1 {
+      font-size: 2.8rem;
+      margin-bottom: 1.25rem;
+      line-height: 1.2;
     }
-    @media (min-width: 1024px) {
-      .text-content h1 { font-size: 3.5rem; }
+
+    .text-panel p {
+      margin-bottom: 1.5rem;
+      color: #cbd5e1;
     }
+
+    /* Mobile */
     @media (max-width: 1023px) {
       #canvas-container {
+        position: relative;
         width: 100vw;
-        height: 40vh;
+        height: 45vh;
         top: auto;
-        bottom: 0;
-        right: 0;
+        right: auto;
+        margin-top: 3rem;
       }
-      .hero {
-        padding: 4rem 2rem 2rem;
-        text-align: center;
+
+      .layout {
         flex-direction: column;
+        align-items: center;
+        text-align: center;
+        padding: 3rem 1.5rem 1rem;
       }
-      .text-content {
+
+      .text-panel {
         margin-bottom: 2rem;
+      }
+
+      .text-panel h1 {
+        font-size: 2.2rem;
       }
     }
   </style>
 </head>
 <body>
-  <div class="hero">
-    <div class="text-content">
+  <div class="layout">
+    <div class="text-panel">
       <h1>
-        Hi, I'm <span class="text-cyan-400">Alex</span>  
-        <br />3D Web Developer
+        Hi, I'm <span class="text-cyan-400">Alex</span><br />
+        3D Web Developer
       </h1>
-      <p class="text-gray-300 mb-6 max-w-lg">
+      <p>
         I build immersive experiences that blend AI, real-time data, and interactive 3D.
         Scroll to see the morph effect!
       </p>
@@ -82,66 +100,80 @@
     </div>
   </div>
 
-  <!-- Content to enable scroll -->
-  <section class="py-20 px-6 max-w-3xl mx-auto">
-    <h2 class="text-3xl font-bold mb-6">My Work</h2>
-    <p class="text-gray-400">
-      From real-time transit optimization in Jabodetabek to AI-powered dashboards — I turn complex urban challenges into elegant, interactive interfaces.
+  <!-- Spacer content for scroll -->
+  <section class="py-20 px-6 max-w-2xl mx-auto text-gray-300">
+    <h2 class="text-2xl font-bold mb-4 text-cyan-400">My Work</h2>
+    <p>
+      From real-time transit optimization in Jabodetabek to AI-powered dashboards — I turn complex urban challenges into elegant interfaces.
     </p>
   </section>
 
-  <section class="py-20 px-6 max-w-3xl mx-auto">
-    <h2 class="text-3xl font-bold mb-6">Let's Connect</h2>
-    <p class="text-gray-400 mb-8">
+  <section class="py-20 px-6 max-w-2xl mx-auto text-gray-300">
+    <h2 class="text-2xl font-bold mb-4 text-cyan-400">Let’s Connect</h2>
+    <p>
       Open to collaborations on sustainable AI, urban mobility, or immersive web apps.
     </p>
-    <a href="mailto:you@example.com" class="inline-block px-6 py-3 bg-cyan-500 text-black font-bold rounded-full">
+    <a href="mailto:you@example.com" class="inline-block mt-4 px-5 py-2 bg-cyan-500 text-black font-semibold rounded">
       Get in Touch
     </a>
   </section>
 
-  <!-- 3D Canvas -->
+  <!-- 3D Scene -->
   <div id="canvas-container"></div>
 
   <script>
     // Initialize Three.js
     const scene = new THREE.Scene();
     scene.background = new THREE.Color(0x000000);
-    scene.fog = new THREE.Fog(0x000000, 8, 15);
+    scene.fog = new THREE.Fog(0x000000, 6, 12);
 
     const camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 0.1, 1000);
-    const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true, preserveDrawingBuffer: true });
-    renderer.setSize(window.innerWidth, window.innerHeight);
+    const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
     document.getElementById('canvas-container').appendChild(renderer.domElement);
 
-    // Position camera for right-side view
-    const isMobile = window.innerWidth < 1024;
-    if (isMobile) {
-      camera.position.set(0, 0, 6);
-    } else {
-      camera.position.set(5, 0, 4); // Closer, angled for right panel
-      camera.lookAt(0, 0, 0);
-    }
+    // Responsive camera
+    const updateCamera = () => {
+      const isMobile = window.innerWidth < 1024;
+      const width = isMobile ? window.innerWidth : window.innerWidth * 0.45;
+      const height = isMobile ? window.innerHeight * 0.45 : window.innerHeight;
+
+      camera.aspect = width / height;
+      camera.updateProjectionMatrix();
+      renderer.setSize(width, height);
+
+      if (isMobile) {
+        camera.position.set(0, 0, 5);
+        camera.lookAt(0, 0, 0);
+      } else {
+        camera.position.set(4, 0, 3);
+        camera.lookAt(0, 0, 0);
+      }
+    };
+
+    updateCamera();
+    window.addEventListener('resize', updateCamera);
 
     // Create 3 cubes
     const cubes = [];
     const colors = [0x00eeff, 0xff00cc, 0x00ff99];
-    const positions = isMobile 
-      ? [[0, -1.5, 0], [0, 0, 0], [0, 1.5, 0]]
-      : [[-1.5, -1, 0], [0, 0, 0], [1.5, 1, 0]];
+    const positions = [
+      new THREE.Vector3(-1.8, -1, 0),
+      new THREE.Vector3(0, 0, 0),
+      new THREE.Vector3(1.8, 1, 0)
+    ];
 
     positions.forEach((pos, i) => {
-      const geo = new THREE.BoxGeometry(1, 1, 1);
+      const geo = new THREE.BoxGeometry(0.9, 0.9, 0.9);
       const mat = new THREE.MeshStandardMaterial({
         color: colors[i],
         roughness: 0.1,
-        metalness: 0.85,
+        metalness: 0.9,
         emissive: colors[i],
         emissiveIntensity: 0.15
       });
       const cube = new THREE.Mesh(geo, mat);
-      cube.position.set(...pos);
+      cube.position.copy(pos);
       scene.add(cube);
       cubes.push(cube);
     });
@@ -153,64 +185,34 @@
     dirLight.position.set(5, 5, 5);
     scene.add(dirLight);
 
-    // Resize handler
-    window.addEventListener('resize', () => {
-      const width = isMobile ? window.innerWidth : window.innerWidth * 0.45;
-      const height = isMobile ? window.innerHeight * 0.4 : window.innerHeight;
-      camera.aspect = width / height;
-      camera.updateProjectionMatrix();
-      renderer.setSize(width, height);
-    });
-
-    // GSAP Scroll-Driven Morph (PowerPoint-style)
+    // GSAP Scroll Morph
     gsap.registerPlugin(ScrollTrigger);
 
-    // Cube 1: Rotate dramatically
+    // Cube 1: Rotate
     gsap.to(cubes[0].rotation, {
       y: Math.PI * 2,
       x: Math.PI,
-      duration: 1,
-      scrollTrigger: {
-        trigger: "body",
-        start: "top top",
-        end: "+=300%",
-        scrub: true
-      }
+      scrollTrigger: { trigger: "body", start: "top top", end: "+=300%", scrub: true }
     });
 
-    // Cube 2: Scale up and pulse
+    // Cube 2: Scale
     gsap.to(cubes[1].scale, {
-      x: 1.7,
-      y: 1.7,
-      z: 1.7,
-      duration: 1,
-      scrollTrigger: {
-        trigger: "body",
-        start: "top top",
-        end: "+=250%",
-        scrub: true
-      }
+      x: 1.8, y: 1.8, z: 1.8,
+      scrollTrigger: { trigger: "body", start: "top top", end: "+=250%", scrub: true }
     });
 
-    // Cube 3: Float upward/right
+    // Cube 3: Move
     gsap.to(cubes[2].position, {
-      y: isMobile ? 2.5 : 2,
-      x: isMobile ? 0 : 2.5,
-      duration: 1,
-      scrollTrigger: {
-        trigger: "body",
-        start: "top top",
-        end: "+=350%",
-        scrub: true
-      }
+      x: 3, y: 2,
+      scrollTrigger: { trigger: "body", start: "top top", end: "+=350%", scrub: true }
     });
 
-    // Base auto-spin (subtle)
+    // Auto-spin base
     const animate = () => {
       requestAnimationFrame(animate);
       cubes.forEach(cube => {
-        cube.rotation.x += 0.002;
-        cube.rotation.y += 0.002;
+        cube.rotation.x += 0.003;
+        cube.rotation.y += 0.003;
       });
       renderer.render(scene, camera);
     };
