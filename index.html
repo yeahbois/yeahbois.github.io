@@ -2,126 +2,231 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>3D Portfolio</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>3D Scroll Portfolio</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
     tailwind.config = {
       theme: {
         extend: {
-          animation: {
-            'float': 'float 6s ease-in-out infinite',
-            'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
-          },
-          keyframes: {
-            float: {
-              '0%, 100%': { transform: 'translateY(0)' },
-              '50%': { transform: 'translateY(-20px)' },
-            }
+          colors: {
+            dark: '#0f0f0f',
+            primary: '#0ea5e9',
           }
         }
       }
     }
   </script>
   <style>
-    .tilt-card {
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    body {
+      margin: 0;
+      overflow-x: hidden;
+      background-color: #0f0f0f;
+      color: white;
+      font-family: 'Inter', sans-serif;
     }
-    .tilt-card:hover {
-      transform: translateY(-10px) rotateX(5deg) rotateY(5deg);
-      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+    #scene-container {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+      pointer-events: none;
+    }
+    .content-section {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 2rem;
+    }
+    @media (max-width: 768px) {
+      .hero h1 { font-size: 2.5rem !important; }
+      .hero p { font-size: 1.1rem !important; }
     }
   </style>
 </head>
-<body class="bg-gray-900 text-white overflow-x-hidden">
+<body class="bg-dark text-white">
+  <!-- 3D Scene Canvas -->
+  <div id="scene-container"></div>
+
   <!-- Navbar -->
-  <nav class="fixed w-full z-50 bg-gray-900/80 backdrop-blur-sm py-4 px-6 flex justify-between items-center">
-    <div class="text-2xl font-bold bg-gradient-to-r from-cyan-400 to-purple-500 bg-clip-text text-transparent">
-      PORTFOLIO
-    </div>
-    <div class="hidden md:flex space-x-8">
-      <a href="#home" class="hover:text-cyan-400 transition">Home</a>
-      <a href="#projects" class="hover:text-cyan-400 transition">Projects</a>
-      <a href="#contact" class="hover:text-cyan-400 transition">Contact</a>
-    </div>
-    <button class="md:hidden text-2xl">☰</button>
+  <nav class="fixed top-0 w-full z-50 p-6 flex justify-between items-center">
+    <div class="text-xl font-bold text-primary">3D<span class="text-white">PORTFOLIO</span></div>
+    <div class="md:hidden text-white text-2xl">☰</div>
   </nav>
 
   <!-- Hero Section -->
-  <section id="home" class="min-h-screen flex items-center justify-center px-4 pt-20">
-    <div class="max-w-4xl text-center">
+  <section class="content-section hero">
+    <div class="max-w-3xl">
       <h1 class="text-5xl md:text-7xl font-bold mb-6">
-        Hi, I'm <span class="bg-gradient-to-r from-cyan-400 to-purple-500 bg-clip-text text-transparent">Alex</span>
+        Crafting <span class="text-primary">3D</span> Experiences
       </h1>
-      <p class="text-xl md:text-2xl text-gray-300 mb-10 max-w-2xl mx-auto">
-        Creative Developer crafting immersive 3D web experiences.
+      <p class="text-lg md:text-xl text-gray-300 mb-8">
+        I build immersive web interfaces that blend design, motion, and interactivity.
       </p>
-      <div class="relative inline-block animate-float">
-        <div class="w-64 h-64 rounded-full bg-gradient-to-br from-cyan-500/20 to-purple-500/20 blur-3xl absolute -top-20 -left-20"></div>
-        <img 
-          src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=200" 
-          alt="Profile" 
-          class="w-48 h-48 rounded-full mx-auto border-4 border-cyan-500/30 relative z-10 shadow-2xl"
-        />
+      <button class="px-6 py-3 bg-primary text-dark font-bold rounded-full hover:bg-blue-400 transition transform hover:scale-105">
+        View Work
+      </button>
+    </div>
+  </section>
+
+  <!-- Projects -->
+  <section class="content-section">
+    <h2 class="text-4xl font-bold mb-12 opacity-0" id="projects-title">Featured Projects</h2>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 opacity-0" id="projects-grid">
+      <div class="bg-gray-900/50 p-6 rounded-xl border border-gray-800">
+        <h3 class="text-2xl font-bold mb-2">Neural Explorer</h3>
+        <p class="text-gray-400">Interactive 3D data visualization using WebGL.</p>
+      </div>
+      <div class="bg-gray-900/50 p-6 rounded-xl border border-gray-800">
+        <h3 class="text-2xl font-bold mb-2">AR Transit Planner</h3>
+        <p class="text-gray-400">Real-time Jabodetabek route optimizer with AR overlay.</p>
       </div>
     </div>
   </section>
 
-  <!-- Projects Section -->
-  <section id="projects" class="py-20 px-4">
-    <h2 class="text-4xl font-bold text-center mb-16">My Projects</h2>
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 max-w-6xl mx-auto">
-      <!-- Project Card 1 -->
-      <div class="tilt-card bg-gray-800/50 backdrop-blur-sm rounded-2xl p-6 border border-gray-700/50">
-        <div class="bg-gray-700 h-48 rounded-xl mb-4 overflow-hidden">
-          <div class="bg-gradient-to-r from-cyan-500 to-purple-500 h-full w-full animate-pulse-slow"></div>
-        </div>
-        <h3 class="text-2xl font-bold mb-2">3D E-Commerce</h3>
-        <p class="text-gray-400 mb-4">Interactive product viewer with Three.js</p>
-        <a href="#" class="text-cyan-400 hover:underline">View Demo →</a>
-      </div>
-
-      <!-- Project Card 2 -->
-      <div class="tilt-card bg-gray-800/50 backdrop-blur-sm rounded-2xl p-6 border border-gray-700/50">
-        <div class="bg-gray-700 h-48 rounded-xl mb-4 overflow-hidden">
-          <div class="bg-gradient-to-r from-purple-500 to-pink-500 h-full w-full animate-pulse-slow"></div>
-        </div>
-        <h3 class="text-2xl font-bold mb-2">AR City Guide</h3>
-        <p class="text-gray-400 mb-4">Real-time navigation with WebXR</p>
-        <a href="#" class="text-cyan-400 hover:underline">View Demo →</a>
-      </div>
-
-      <!-- Project Card 3 -->
-      <div class="tilt-card bg-gray-800/50 backdrop-blur-sm rounded-2xl p-6 border border-gray-700/50">
-        <div class="bg-gray-700 h-48 rounded-xl mb-4 overflow-hidden">
-          <div class="bg-gradient-to-r from-green-500 to-teal-500 h-full w-full animate-pulse-slow"></div>
-        </div>
-        <h3 class="text-2xl font-bold mb-2">Neural Dashboard</h3>
-        <p class="text-gray-400 mb-4">AI-powered analytics with WebGL</p>
-        <a href="#" class="text-cyan-400 hover:underline">View Demo →</a>
-      </div>
-    </div>
+  <!-- Contact -->
+  <section class="content-section text-center">
+    <h2 class="text-4xl font-bold mb-6 opacity-0" id="contact-title">Let's Connect</h2>
+    <p class="text-gray-300 max-w-xl mx-auto mb-8 opacity-0" id="contact-desc">
+      Open to collaborations on AI-driven urban mobility or immersive web apps.
+    </p>
+    <a href="mailto:you@example.com" class="inline-block px-6 py-3 bg-primary text-dark font-bold rounded-full opacity-0" id="contact-btn">
+      Say Hello
+    </a>
   </section>
 
-  <!-- Contact Section -->
-  <section id="contact" class="py-20 px-4 bg-gray-800/30">
-    <div class="max-w-2xl mx-auto text-center">
-      <h2 class="text-4xl font-bold mb-6">Let's Build Something Amazing</h2>
-      <p class="text-gray-300 mb-8">
-        Open to collaborations, freelance work, or just a chat about tech!
-      </p>
-      <a 
-        href="mailto:hello@example.com" 
-        class="inline-block bg-gradient-to-r from-cyan-500 to-purple-500 text-white font-bold py-3 px-8 rounded-full hover:opacity-90 transition transform hover:scale-105"
-      >
-        Get In Touch
-      </a>
-    </div>
-  </section>
+  <!-- Scripts -->
+  <script type="module">
+    // Load only if device is capable
+    const isMobile = /Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+    const isLowEnd = window.devicePixelRatio < 1.5 || window.innerWidth < 768;
 
-  <!-- Footer -->
-  <footer class="py-8 text-center text-gray-500">
-    <p>© 2025 Made with ❤️ and 3D magic</p>
-  </footer>
+    // Only initialize heavy 3D on capable devices
+    if (!isLowEnd) {
+      import('https://unpkg.com/three@0.160.1/build/three.module.js').then(({ Scene, PerspectiveCamera, WebGLRenderer, Mesh, MeshStandardMaterial, SphereGeometry, PointLight, AmbientLight, Color }) => {
+        import('https://unpkg.com/gsap@3.12.5/dist/gsap.min.js').then(() => {
+          import('https://unpkg.com/gsap@3.12.5/dist/ScrollTrigger.min.js').then(() => {
+            const { gsap } = window;
+
+            // === THREE.JS SETUP ===
+            const scene = new Scene();
+            scene.background = new Color(0x0f0f0f);
+            const camera = new PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+            const renderer = new WebGLRenderer({ antialias: true, alpha: true });
+            renderer.setSize(window.innerWidth, window.innerHeight);
+            renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+            document.getElementById('scene-container').appendChild(renderer.domElement);
+
+            // Create a glowing sphere
+            const geometry = new SphereGeometry(2, 64, 64);
+            const material = new MeshStandardMaterial({
+              color: 0x0ea5e9,
+              roughness: 0.1,
+              metalness: 0.9,
+              emissive: 0x086a9e,
+              emissiveIntensity: 0.3
+            });
+            const sphere = new Mesh(geometry, material);
+            scene.add(sphere);
+
+            // Lights
+            const ambientLight = new AmbientLight(0xffffff, 0.5);
+            scene.add(ambientLight);
+            const pointLight = new PointLight(0x0ea5e9, 1, 100);
+            pointLight.position.set(5, 5, 5);
+            scene.add(pointLight);
+
+            camera.position.z = 8;
+
+            // Handle window resize
+            window.addEventListener('resize', () => {
+              camera.aspect = window.innerWidth / window.innerHeight;
+              camera.updateProjectionMatrix();
+              renderer.setSize(window.innerWidth, window.innerHeight);
+            });
+
+            // Mouse/touch interaction
+            let mouseX = 0, mouseY = 0;
+            let targetX = 0, targetY = 0;
+            const ease = isMobile ? 0.05 : 0.02;
+
+            const handleMove = (e) => {
+              if (isMobile) {
+                mouseX = (e.touches[0].clientX / window.innerWidth) * 2 - 1;
+                mouseY = -(e.touches[0].clientY / window.innerHeight) * 2 + 1;
+              } else {
+                mouseX = (e.clientX / window.innerWidth) * 2 - 1;
+                mouseY = -(e.clientY / window.innerHeight) * 2 + 1;
+              }
+            };
+
+            if (isMobile) {
+              window.addEventListener('touchmove', handleMove, { passive: false });
+            } else {
+              window.addEventListener('mousemove', handleMove);
+            }
+
+            // Animation loop
+            const animate = () => {
+              requestAnimationFrame(animate);
+
+              // Smooth mouse follow
+              targetX += (mouseX - targetX) * ease;
+              targetY += (mouseY - targetY) * ease;
+
+              // Rotate sphere
+              sphere.rotation.x += 0.002;
+              sphere.rotation.y += 0.002;
+
+              // Tilt based on mouse
+              sphere.rotation.y += targetX * 0.05;
+              sphere.rotation.x += targetY * 0.05;
+
+              renderer.render(scene, camera);
+            };
+            animate();
+
+            // === SCROLL ANIMATIONS ===
+            gsap.registerPlugin(window.ScrollTrigger);
+
+            // Fade-in content on scroll
+            gsap.fromTo("#projects-title", 
+              { opacity: 0, y: 30 }, 
+              { opacity: 1, y: 0, duration: 1, scrollTrigger: { trigger: "#projects-title", start: "top 80%" } }
+            );
+            gsap.fromTo("#projects-grid", 
+              { opacity: 0, y: 30 }, 
+              { opacity: 1, y: 0, duration: 1, delay: 0.2, scrollTrigger: { trigger: "#projects-grid", start: "top 80%" } }
+            );
+            gsap.fromTo("#contact-title", 
+              { opacity: 0, y: 30 }, 
+              { opacity: 1, y: 0, duration: 1, scrollTrigger: { trigger: "#contact-title", start: "top 80%" } }
+            );
+            gsap.fromTo("#contact-desc", 
+              { opacity: 0, y: 30 }, 
+              { opacity: 1, y: 0, duration: 1, scrollTrigger: { trigger: "#contact-desc", start: "top 80%" } }
+            );
+            gsap.fromTo("#contact-btn", 
+              { opacity: 0, y: 30 }, 
+              { opacity: 1, y: 0, duration: 1, scrollTrigger: { trigger: "#contact-btn", start: "top 80%" } }
+            );
+          });
+        });
+      }).catch(err => console.warn("3D disabled:", err));
+    } else {
+      // Fallback: simple fade-in without 3D
+      document.getElementById('scene-container').style.display = 'none';
+      setTimeout(() => {
+        document.querySelectorAll('.opacity-0').forEach(el => {
+          el.style.opacity = '1';
+          el.style.transform = 'translateY(0)';
+          el.style.transition = 'opacity 0.8s, transform 0.8s';
+        });
+      }, 300);
+    }
+  </script>
 </body>
 </html>
