@@ -3,7 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
-  <title>3D Scroll Portfolio</title>
+  <title>3D Morph Portfolio</title>
+  <!-- Fixed CDN URLs (removed trailing spaces) -->
   <script src="https://cdn.tailwindcss.com"></script>
   <script src="https://unpkg.com/three@0.160.1/build/three.min.js"></script>
   <script src="https://unpkg.com/gsap@3.12.5/dist/gsap.min.js"></script>
@@ -17,23 +18,26 @@
       font-family: 'Inter', sans-serif;
     }
     #canvas-container {
-      position: absolute;
+      position: fixed;
       top: 0;
-      width: 100%;
-      height: 100%;
+      right: 0;
+      width: 45vw;
+      height: 100vh;
       z-index: -1;
+      pointer-events: none;
     }
     .hero {
       min-height: 100vh;
       display: flex;
       align-items: center;
-      padding: 2rem;
+      padding: 2rem 2rem 2rem 5%;
       box-sizing: border-box;
+      position: relative;
+      z-index: 10;
     }
     .text-content {
       flex: 1;
       max-width: 600px;
-      z-index: 10;
     }
     .text-content h1 {
       font-size: 2.5rem;
@@ -41,26 +45,22 @@
     }
     @media (min-width: 1024px) {
       .text-content h1 { font-size: 3.5rem; }
-      .hero {
-        padding-left: 5%;
-        padding-right: 40%; /* Leave space for 3D on right */
-      }
     }
     @media (max-width: 1023px) {
+      #canvas-container {
+        width: 100vw;
+        height: 40vh;
+        top: auto;
+        bottom: 0;
+        right: 0;
+      }
       .hero {
-        flex-direction: column;
-        justify-content: flex-start;
+        padding: 4rem 2rem 2rem;
         text-align: center;
-        padding-top: 4rem;
+        flex-direction: column;
       }
       .text-content {
         margin-bottom: 2rem;
-        max-width: 100%;
-      }
-      #canvas-container {
-        height: 50vh;
-        position: relative;
-        margin-top: 2rem;
       }
     }
   </style>
@@ -74,7 +74,7 @@
       </h1>
       <p class="text-gray-300 mb-6 max-w-lg">
         I build immersive experiences that blend AI, real-time data, and interactive 3D.
-        Scroll to see the cubes react!
+        Scroll to see the morph effect!
       </p>
       <button class="px-6 py-3 bg-cyan-500 text-black font-bold rounded-full hover:bg-cyan-400 transition">
         View Projects
@@ -82,24 +82,25 @@
     </div>
   </div>
 
-  <!-- Extra sections to enable scroll -->
-  <section class="py-20 px-6 text-center">
+  <!-- Content to enable scroll -->
+  <section class="py-20 px-6 max-w-3xl mx-auto">
     <h2 class="text-3xl font-bold mb-6">My Work</h2>
-    <p class="text-gray-400 max-w-2xl mx-auto">
-      From real-time transit optimization in Jabodetabek to AI-powered dashboards — I turn complex problems into elegant interfaces.
+    <p class="text-gray-400">
+      From real-time transit optimization in Jabodetabek to AI-powered dashboards — I turn complex urban challenges into elegant, interactive interfaces.
     </p>
   </section>
 
-  <section class="py-20 px-6 text-center">
+  <section class="py-20 px-6 max-w-3xl mx-auto">
     <h2 class="text-3xl font-bold mb-6">Let's Connect</h2>
-    <p class="text-gray-400 max-w-2xl mx-auto mb-8">
-      Open to collaborations on urban mobility, AI, or immersive web apps.
+    <p class="text-gray-400 mb-8">
+      Open to collaborations on sustainable AI, urban mobility, or immersive web apps.
     </p>
     <a href="mailto:you@example.com" class="inline-block px-6 py-3 bg-cyan-500 text-black font-bold rounded-full">
       Get in Touch
     </a>
   </section>
 
+  <!-- 3D Canvas -->
   <div id="canvas-container"></div>
 
   <script>
@@ -109,107 +110,80 @@
     scene.fog = new THREE.Fog(0x000000, 8, 15);
 
     const camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 0.1, 1000);
-    const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+    const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true, preserveDrawingBuffer: true });
     renderer.setSize(window.innerWidth, window.innerHeight);
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
     document.getElementById('canvas-container').appendChild(renderer.domElement);
 
-    // Adjust camera for desktop vs mobile
+    // Position camera for right-side view
     const isMobile = window.innerWidth < 1024;
     if (isMobile) {
       camera.position.set(0, 0, 6);
     } else {
-      camera.position.set(8, 0, 6); // Right-side view
+      camera.position.set(5, 0, 4); // Closer, angled for right panel
       camera.lookAt(0, 0, 0);
     }
 
-    // Create multiple cubes
+    // Create 3 cubes
     const cubes = [];
-    const colors = [0x00eeff, 0xff00cc, 0x00ff99, 0xffaa00];
+    const colors = [0x00eeff, 0xff00cc, 0x00ff99];
     const positions = isMobile 
-      ? [[0, -2, 0], [0, 0, 0], [0, 2, 0]]
-      : [[-2, -1, 0], [0, 0, 0], [2, 1, 0]];
+      ? [[0, -1.5, 0], [0, 0, 0], [0, 1.5, 0]]
+      : [[-1.5, -1, 0], [0, 0, 0], [1.5, 1, 0]];
 
     positions.forEach((pos, i) => {
-      const geo = new THREE.BoxGeometry(1.2, 1.2, 1.2);
+      const geo = new THREE.BoxGeometry(1, 1, 1);
       const mat = new THREE.MeshStandardMaterial({
-        color: colors[i % colors.length],
+        color: colors[i],
         roughness: 0.1,
-        metalness: 0.8,
-        emissive: colors[i % colors.length],
-        emissiveIntensity: 0.1
+        metalness: 0.85,
+        emissive: colors[i],
+        emissiveIntensity: 0.15
       });
       const cube = new THREE.Mesh(geo, mat);
       cube.position.set(...pos);
       scene.add(cube);
-      cubes.push({ mesh: cube, basePos: new THREE.Vector3(...pos) });
+      cubes.push(cube);
     });
 
     // Lights
-    const ambient = new THREE.AmbientLight(0xffffff, 0.3);
+    const ambient = new THREE.AmbientLight(0xffffff, 0.4);
     scene.add(ambient);
     const dirLight = new THREE.DirectionalLight(0xffffff, 1);
     dirLight.position.set(5, 5, 5);
     scene.add(dirLight);
 
-    // Handle resize
+    // Resize handler
     window.addEventListener('resize', () => {
-      camera.aspect = window.innerWidth / window.innerHeight;
+      const width = isMobile ? window.innerWidth : window.innerWidth * 0.45;
+      const height = isMobile ? window.innerHeight * 0.4 : window.innerHeight;
+      camera.aspect = width / height;
       camera.updateProjectionMatrix();
-      renderer.setSize(window.innerWidth, window.innerHeight);
-      
-      // Re-adjust layout
-      const newIsMobile = window.innerWidth < 1024;
-      if (newIsMobile) {
-        camera.position.set(0, 0, 6);
-        camera.lookAt(0, 0, 0);
-        // Update cube positions for mobile
-        cubes[0].mesh.position.set(0, -2, 0);
-        cubes[1].mesh.position.set(0, 0, 0);
-        cubes[2].mesh.position.set(0, 2, 0);
-      } else {
-        camera.position.set(8, 0, 6);
-        camera.lookAt(0, 0, 0);
-        cubes[0].mesh.position.set(-2, -1, 0);
-        cubes[1].mesh.position.set(0, 0, 0);
-        cubes[2].mesh.position.set(2, 1, 0);
-      }
+      renderer.setSize(width, height);
     });
 
-    // GSAP Scroll-Driven Morph Effect
+    // GSAP Scroll-Driven Morph (PowerPoint-style)
     gsap.registerPlugin(ScrollTrigger);
 
-    // Animate cubes on scroll
-    gsap.to(cubes[0].mesh.rotation, {
+    // Cube 1: Rotate dramatically
+    gsap.to(cubes[0].rotation, {
       y: Math.PI * 2,
       x: Math.PI,
-      duration: 4,
+      duration: 1,
       scrollTrigger: {
         trigger: "body",
         start: "top top",
-        end: "+=200%",
+        end: "+=300%",
         scrub: true
       }
     });
 
-    gsap.to(cubes[1].mesh.scale, {
-      x: 1.8,
-      y: 1.8,
-      z: 1.8,
-      duration: 3,
-      scrollTrigger: {
-        trigger: "body",
-        start: "top top",
-        end: "+=150%",
-        scrub: true
-      }
-    });
-
-    gsap.to(cubes[2].mesh.position, {
-      x: isMobile ? 0 : 3,
-      y: isMobile ? 3 : 2,
-      z: 0,
-      duration: 5,
+    // Cube 2: Scale up and pulse
+    gsap.to(cubes[1].scale, {
+      x: 1.7,
+      y: 1.7,
+      z: 1.7,
+      duration: 1,
       scrollTrigger: {
         trigger: "body",
         start: "top top",
@@ -218,15 +192,26 @@
       }
     });
 
-    // Auto-spin base animation
+    // Cube 3: Float upward/right
+    gsap.to(cubes[2].position, {
+      y: isMobile ? 2.5 : 2,
+      x: isMobile ? 0 : 2.5,
+      duration: 1,
+      scrollTrigger: {
+        trigger: "body",
+        start: "top top",
+        end: "+=350%",
+        scrub: true
+      }
+    });
+
+    // Base auto-spin (subtle)
     const animate = () => {
       requestAnimationFrame(animate);
-      
-      cubes.forEach(c => {
-        c.mesh.rotation.x += 0.005;
-        c.mesh.rotation.y += 0.005;
+      cubes.forEach(cube => {
+        cube.rotation.x += 0.002;
+        cube.rotation.y += 0.002;
       });
-
       renderer.render(scene, camera);
     };
     animate();
