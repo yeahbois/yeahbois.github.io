@@ -1,111 +1,127 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portfolio</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Courier+Prime:wght@400;700&display=swap" rel="stylesheet">
-    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
-    <style>
-        body { font-family: 'Courier Prime', monospace; }
-        .tech-bg i {
-            position: absolute;
-            opacity: 0.1;
-            font-size: 5rem;
-            transform: rotate(var(--rotation));
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>3D Portfolio</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          animation: {
+            'float': 'float 6s ease-in-out infinite',
+            'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+          },
+          keyframes: {
+            float: {
+              '0%, 100%': { transform: 'translateY(0)' },
+              '50%': { transform: 'translateY(-20px)' },
+            }
+          }
         }
-        .flashcard-container {
-            display: flex;
-            overflow-x: auto;
-            gap: 1rem;
-            padding: 1rem;
-        }
-        .flashcard {
-            min-width: 250px;
-            background: white;
-            padding: 1rem;
-            border-radius: 8px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-        }
-    </style>
+      }
+    }
+  </script>
+  <style>
+    .tilt-card {
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .tilt-card:hover {
+      transform: translateY(-10px) rotateX(5deg) rotateY(5deg);
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+    }
+  </style>
 </head>
-<body class="bg-gray-900 text-white relative">
-    <!-- Navbar -->
-    <nav class="fixed top-0 left-0 w-full bg-gray-800 p-4 flex justify-between items-center z-50">
-        <div class="text-lg font-bold">Portfolio</div>
-        <ul class="hidden md:flex space-x-6">
-            <li><a href="#home" class="hover:text-gray-300">Home</a></li>
-            <li><a href="#projects" class="hover:text-gray-300">Projects</a></li>
-            <li><a href="#skills" class="hover:text-gray-300">Skills</a></li>
-            <li><a href="#recent" class="hover:text-gray-300">Recent Work</a></li>
-            <li><a href="#contact" class="hover:text-gray-300">Get in Touch</a></li>
-        </ul>
-        <div class="md:hidden cursor-pointer" id="menu-toggle">☰</div>
-    </nav>
-    <div class="hidden flex-col bg-gray-800 p-4 space-y-2 absolute w-full top-16 left-0" id="mobile-menu">
-        <a href="#projects">Projects</a>
-        <a href="#skills">Skills</a>
-        <a href="#recent">Recent Work</a>
-        <a href="#contact">Get in Touch</a>
+<body class="bg-gray-900 text-white overflow-x-hidden">
+  <!-- Navbar -->
+  <nav class="fixed w-full z-50 bg-gray-900/80 backdrop-blur-sm py-4 px-6 flex justify-between items-center">
+    <div class="text-2xl font-bold bg-gradient-to-r from-cyan-400 to-purple-500 bg-clip-text text-transparent">
+      PORTFOLIO
     </div>
-    
-    <!-- Tech Background -->
-    <div class="absolute inset-0 tech-bg">
-        <i class="fab fa-html5" style="top: 10%; left: 20%; --rotation: 30deg;"></i>
-        <i class="fab fa-css3-alt" style="top: 40%; left: 50%; --rotation: -20deg;"></i>
-        <i class="fab fa-js" style="top: 70%; left: 10%; --rotation: 45deg;"></i>
-        <i class="fab fa-react" style="top: 20%; right: 30%; --rotation: -30deg;"></i>
-        <i class="fab fa-python" style="top: 60%; right: 20%; --rotation: 10deg;"></i>
+    <div class="hidden md:flex space-x-8">
+      <a href="#home" class="hover:text-cyan-400 transition">Home</a>
+      <a href="#projects" class="hover:text-cyan-400 transition">Projects</a>
+      <a href="#contact" class="hover:text-cyan-400 transition">Contact</a>
     </div>
-    
-    <!-- Sections -->
-    <section id="projects" class="mt-20 p-10">
-        <h2 class="text-2xl font-bold">Projects</h2>
-        <div class="flashcard-container">
-            <div class="flashcard">Ignotum - A social media website <a href="#">(View)</a></div>
-            <div class="flashcard">FaldaBot - A multipurpose Discord bot <a href="#">(View)</a></div>
-            <div class="flashcard">Disdotjson - Discord bot with JSON <a href="#">(View)</a></div>
-            <div class="flashcard">ShopSeer - ML-based shopping tool <a href="#">(View)</a></div>
+    <button class="md:hidden text-2xl">☰</button>
+  </nav>
+
+  <!-- Hero Section -->
+  <section id="home" class="min-h-screen flex items-center justify-center px-4 pt-20">
+    <div class="max-w-4xl text-center">
+      <h1 class="text-5xl md:text-7xl font-bold mb-6">
+        Hi, I'm <span class="bg-gradient-to-r from-cyan-400 to-purple-500 bg-clip-text text-transparent">Alex</span>
+      </h1>
+      <p class="text-xl md:text-2xl text-gray-300 mb-10 max-w-2xl mx-auto">
+        Creative Developer crafting immersive 3D web experiences.
+      </p>
+      <div class="relative inline-block animate-float">
+        <div class="w-64 h-64 rounded-full bg-gradient-to-br from-cyan-500/20 to-purple-500/20 blur-3xl absolute -top-20 -left-20"></div>
+        <img 
+          src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=200" 
+          alt="Profile" 
+          class="w-48 h-48 rounded-full mx-auto border-4 border-cyan-500/30 relative z-10 shadow-2xl"
+        />
+      </div>
+    </div>
+  </section>
+
+  <!-- Projects Section -->
+  <section id="projects" class="py-20 px-4">
+    <h2 class="text-4xl font-bold text-center mb-16">My Projects</h2>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 max-w-6xl mx-auto">
+      <!-- Project Card 1 -->
+      <div class="tilt-card bg-gray-800/50 backdrop-blur-sm rounded-2xl p-6 border border-gray-700/50">
+        <div class="bg-gray-700 h-48 rounded-xl mb-4 overflow-hidden">
+          <div class="bg-gradient-to-r from-cyan-500 to-purple-500 h-full w-full animate-pulse-slow"></div>
         </div>
-    </section>
-    
-    <section id="skills" class="p-10">
-        <h2 class="text-2xl font-bold">Skills</h2>
-        <div class="flashcard-container">
-            <div class="flashcard">JavaScript</div>
-            <div class="flashcard">Python</div>
-            <div class="flashcard">React</div>
-            <div class="flashcard">Machine Learning</div>
+        <h3 class="text-2xl font-bold mb-2">3D E-Commerce</h3>
+        <p class="text-gray-400 mb-4">Interactive product viewer with Three.js</p>
+        <a href="#" class="text-cyan-400 hover:underline">View Demo →</a>
+      </div>
+
+      <!-- Project Card 2 -->
+      <div class="tilt-card bg-gray-800/50 backdrop-blur-sm rounded-2xl p-6 border border-gray-700/50">
+        <div class="bg-gray-700 h-48 rounded-xl mb-4 overflow-hidden">
+          <div class="bg-gradient-to-r from-purple-500 to-pink-500 h-full w-full animate-pulse-slow"></div>
         </div>
-    </section>
-    
-    <section id="recent" class="p-10">
-        <h2 class="text-2xl font-bold">Recent Work</h2>
-        <div class="flashcard">ShopSeer - My newest ML project</div>
-        <div class="flashcard">ThamNet - Student Council Blog Site</div>
-    </section>
-    
-    <section id="contact" class="p-10">
-        <h2 class="text-2xl font-bold">Get in Touch</h2>
-        <div class="flashcard-container">
-            <div class="flashcard">
-                <img src="#" alt="Profile" class="w-16 h-16 rounded-full">
-                <p>LinkedIn</p>
-            </div>
-            <div class="flashcard">
-                <img src="#" alt="Profile" class="w-16 h-16 rounded-full">
-                <p>GitHub</p>
-            </div>
+        <h3 class="text-2xl font-bold mb-2">AR City Guide</h3>
+        <p class="text-gray-400 mb-4">Real-time navigation with WebXR</p>
+        <a href="#" class="text-cyan-400 hover:underline">View Demo →</a>
+      </div>
+
+      <!-- Project Card 3 -->
+      <div class="tilt-card bg-gray-800/50 backdrop-blur-sm rounded-2xl p-6 border border-gray-700/50">
+        <div class="bg-gray-700 h-48 rounded-xl mb-4 overflow-hidden">
+          <div class="bg-gradient-to-r from-green-500 to-teal-500 h-full w-full animate-pulse-slow"></div>
         </div>
-    </section>
-    
-    <script>
-        document.getElementById("menu-toggle").addEventListener("click", function() {
-            document.getElementById("mobile-menu").classList.toggle("hidden");
-        });
-    </script>
+        <h3 class="text-2xl font-bold mb-2">Neural Dashboard</h3>
+        <p class="text-gray-400 mb-4">AI-powered analytics with WebGL</p>
+        <a href="#" class="text-cyan-400 hover:underline">View Demo →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section id="contact" class="py-20 px-4 bg-gray-800/30">
+    <div class="max-w-2xl mx-auto text-center">
+      <h2 class="text-4xl font-bold mb-6">Let's Build Something Amazing</h2>
+      <p class="text-gray-300 mb-8">
+        Open to collaborations, freelance work, or just a chat about tech!
+      </p>
+      <a 
+        href="mailto:hello@example.com" 
+        class="inline-block bg-gradient-to-r from-cyan-500 to-purple-500 text-white font-bold py-3 px-8 rounded-full hover:opacity-90 transition transform hover:scale-105"
+      >
+        Get In Touch
+      </a>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="py-8 text-center text-gray-500">
+    <p>© 2025 Made with ❤️ and 3D magic</p>
+  </footer>
 </body>
 </html>
