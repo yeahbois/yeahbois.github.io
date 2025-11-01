@@ -2,231 +2,234 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
   <title>3D Scroll Portfolio</title>
   <script src="https://cdn.tailwindcss.com"></script>
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          colors: {
-            dark: '#0f0f0f',
-            primary: '#0ea5e9',
-          }
-        }
-      }
-    }
-  </script>
+  <script src="https://unpkg.com/three@0.160.1/build/three.min.js"></script>
+  <script src="https://unpkg.com/gsap@3.12.5/dist/gsap.min.js"></script>
+  <script src="https://unpkg.com/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
   <style>
     body {
       margin: 0;
       overflow-x: hidden;
-      background-color: #0f0f0f;
+      background: #000;
       color: white;
       font-family: 'Inter', sans-serif;
     }
-    #scene-container {
-      position: fixed;
+    #canvas-container {
+      position: absolute;
       top: 0;
-      left: 0;
       width: 100%;
       height: 100%;
       z-index: -1;
-      pointer-events: none;
     }
-    .content-section {
+    .hero {
       min-height: 100vh;
       display: flex;
-      flex-direction: column;
-      justify-content: center;
+      align-items: center;
       padding: 2rem;
+      box-sizing: border-box;
     }
-    @media (max-width: 768px) {
-      .hero h1 { font-size: 2.5rem !important; }
-      .hero p { font-size: 1.1rem !important; }
+    .text-content {
+      flex: 1;
+      max-width: 600px;
+      z-index: 10;
+    }
+    .text-content h1 {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+    }
+    @media (min-width: 1024px) {
+      .text-content h1 { font-size: 3.5rem; }
+      .hero {
+        padding-left: 5%;
+        padding-right: 40%; /* Leave space for 3D on right */
+      }
+    }
+    @media (max-width: 1023px) {
+      .hero {
+        flex-direction: column;
+        justify-content: flex-start;
+        text-align: center;
+        padding-top: 4rem;
+      }
+      .text-content {
+        margin-bottom: 2rem;
+        max-width: 100%;
+      }
+      #canvas-container {
+        height: 50vh;
+        position: relative;
+        margin-top: 2rem;
+      }
     }
   </style>
 </head>
-<body class="bg-dark text-white">
-  <!-- 3D Scene Canvas -->
-  <div id="scene-container"></div>
-
-  <!-- Navbar -->
-  <nav class="fixed top-0 w-full z-50 p-6 flex justify-between items-center">
-    <div class="text-xl font-bold text-primary">3D<span class="text-white">PORTFOLIO</span></div>
-    <div class="md:hidden text-white text-2xl">☰</div>
-  </nav>
-
-  <!-- Hero Section -->
-  <section class="content-section hero">
-    <div class="max-w-3xl">
-      <h1 class="text-5xl md:text-7xl font-bold mb-6">
-        Crafting <span class="text-primary">3D</span> Experiences
+<body>
+  <div class="hero">
+    <div class="text-content">
+      <h1>
+        Hi, I'm <span class="text-cyan-400">Alex</span>  
+        <br />3D Web Developer
       </h1>
-      <p class="text-lg md:text-xl text-gray-300 mb-8">
-        I build immersive web interfaces that blend design, motion, and interactivity.
+      <p class="text-gray-300 mb-6 max-w-lg">
+        I build immersive experiences that blend AI, real-time data, and interactive 3D.
+        Scroll to see the cubes react!
       </p>
-      <button class="px-6 py-3 bg-primary text-dark font-bold rounded-full hover:bg-blue-400 transition transform hover:scale-105">
-        View Work
+      <button class="px-6 py-3 bg-cyan-500 text-black font-bold rounded-full hover:bg-cyan-400 transition">
+        View Projects
       </button>
     </div>
-  </section>
+  </div>
 
-  <!-- Projects -->
-  <section class="content-section">
-    <h2 class="text-4xl font-bold mb-12 opacity-0" id="projects-title">Featured Projects</h2>
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 opacity-0" id="projects-grid">
-      <div class="bg-gray-900/50 p-6 rounded-xl border border-gray-800">
-        <h3 class="text-2xl font-bold mb-2">Neural Explorer</h3>
-        <p class="text-gray-400">Interactive 3D data visualization using WebGL.</p>
-      </div>
-      <div class="bg-gray-900/50 p-6 rounded-xl border border-gray-800">
-        <h3 class="text-2xl font-bold mb-2">AR Transit Planner</h3>
-        <p class="text-gray-400">Real-time Jabodetabek route optimizer with AR overlay.</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- Contact -->
-  <section class="content-section text-center">
-    <h2 class="text-4xl font-bold mb-6 opacity-0" id="contact-title">Let's Connect</h2>
-    <p class="text-gray-300 max-w-xl mx-auto mb-8 opacity-0" id="contact-desc">
-      Open to collaborations on AI-driven urban mobility or immersive web apps.
+  <!-- Extra sections to enable scroll -->
+  <section class="py-20 px-6 text-center">
+    <h2 class="text-3xl font-bold mb-6">My Work</h2>
+    <p class="text-gray-400 max-w-2xl mx-auto">
+      From real-time transit optimization in Jabodetabek to AI-powered dashboards — I turn complex problems into elegant interfaces.
     </p>
-    <a href="mailto:you@example.com" class="inline-block px-6 py-3 bg-primary text-dark font-bold rounded-full opacity-0" id="contact-btn">
-      Say Hello
+  </section>
+
+  <section class="py-20 px-6 text-center">
+    <h2 class="text-3xl font-bold mb-6">Let's Connect</h2>
+    <p class="text-gray-400 max-w-2xl mx-auto mb-8">
+      Open to collaborations on urban mobility, AI, or immersive web apps.
+    </p>
+    <a href="mailto:you@example.com" class="inline-block px-6 py-3 bg-cyan-500 text-black font-bold rounded-full">
+      Get in Touch
     </a>
   </section>
 
-  <!-- Scripts -->
-  <script type="module">
-    // Load only if device is capable
-    const isMobile = /Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
-    const isLowEnd = window.devicePixelRatio < 1.5 || window.innerWidth < 768;
+  <div id="canvas-container"></div>
 
-    // Only initialize heavy 3D on capable devices
-    if (!isLowEnd) {
-      import('https://unpkg.com/three@0.160.1/build/three.module.js').then(({ Scene, PerspectiveCamera, WebGLRenderer, Mesh, MeshStandardMaterial, SphereGeometry, PointLight, AmbientLight, Color }) => {
-        import('https://unpkg.com/gsap@3.12.5/dist/gsap.min.js').then(() => {
-          import('https://unpkg.com/gsap@3.12.5/dist/ScrollTrigger.min.js').then(() => {
-            const { gsap } = window;
+  <script>
+    // Initialize Three.js
+    const scene = new THREE.Scene();
+    scene.background = new THREE.Color(0x000000);
+    scene.fog = new THREE.Fog(0x000000, 8, 15);
 
-            // === THREE.JS SETUP ===
-            const scene = new Scene();
-            scene.background = new Color(0x0f0f0f);
-            const camera = new PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-            const renderer = new WebGLRenderer({ antialias: true, alpha: true });
-            renderer.setSize(window.innerWidth, window.innerHeight);
-            renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
-            document.getElementById('scene-container').appendChild(renderer.domElement);
+    const camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 0.1, 1000);
+    const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+    renderer.setSize(window.innerWidth, window.innerHeight);
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+    document.getElementById('canvas-container').appendChild(renderer.domElement);
 
-            // Create a glowing sphere
-            const geometry = new SphereGeometry(2, 64, 64);
-            const material = new MeshStandardMaterial({
-              color: 0x0ea5e9,
-              roughness: 0.1,
-              metalness: 0.9,
-              emissive: 0x086a9e,
-              emissiveIntensity: 0.3
-            });
-            const sphere = new Mesh(geometry, material);
-            scene.add(sphere);
-
-            // Lights
-            const ambientLight = new AmbientLight(0xffffff, 0.5);
-            scene.add(ambientLight);
-            const pointLight = new PointLight(0x0ea5e9, 1, 100);
-            pointLight.position.set(5, 5, 5);
-            scene.add(pointLight);
-
-            camera.position.z = 8;
-
-            // Handle window resize
-            window.addEventListener('resize', () => {
-              camera.aspect = window.innerWidth / window.innerHeight;
-              camera.updateProjectionMatrix();
-              renderer.setSize(window.innerWidth, window.innerHeight);
-            });
-
-            // Mouse/touch interaction
-            let mouseX = 0, mouseY = 0;
-            let targetX = 0, targetY = 0;
-            const ease = isMobile ? 0.05 : 0.02;
-
-            const handleMove = (e) => {
-              if (isMobile) {
-                mouseX = (e.touches[0].clientX / window.innerWidth) * 2 - 1;
-                mouseY = -(e.touches[0].clientY / window.innerHeight) * 2 + 1;
-              } else {
-                mouseX = (e.clientX / window.innerWidth) * 2 - 1;
-                mouseY = -(e.clientY / window.innerHeight) * 2 + 1;
-              }
-            };
-
-            if (isMobile) {
-              window.addEventListener('touchmove', handleMove, { passive: false });
-            } else {
-              window.addEventListener('mousemove', handleMove);
-            }
-
-            // Animation loop
-            const animate = () => {
-              requestAnimationFrame(animate);
-
-              // Smooth mouse follow
-              targetX += (mouseX - targetX) * ease;
-              targetY += (mouseY - targetY) * ease;
-
-              // Rotate sphere
-              sphere.rotation.x += 0.002;
-              sphere.rotation.y += 0.002;
-
-              // Tilt based on mouse
-              sphere.rotation.y += targetX * 0.05;
-              sphere.rotation.x += targetY * 0.05;
-
-              renderer.render(scene, camera);
-            };
-            animate();
-
-            // === SCROLL ANIMATIONS ===
-            gsap.registerPlugin(window.ScrollTrigger);
-
-            // Fade-in content on scroll
-            gsap.fromTo("#projects-title", 
-              { opacity: 0, y: 30 }, 
-              { opacity: 1, y: 0, duration: 1, scrollTrigger: { trigger: "#projects-title", start: "top 80%" } }
-            );
-            gsap.fromTo("#projects-grid", 
-              { opacity: 0, y: 30 }, 
-              { opacity: 1, y: 0, duration: 1, delay: 0.2, scrollTrigger: { trigger: "#projects-grid", start: "top 80%" } }
-            );
-            gsap.fromTo("#contact-title", 
-              { opacity: 0, y: 30 }, 
-              { opacity: 1, y: 0, duration: 1, scrollTrigger: { trigger: "#contact-title", start: "top 80%" } }
-            );
-            gsap.fromTo("#contact-desc", 
-              { opacity: 0, y: 30 }, 
-              { opacity: 1, y: 0, duration: 1, scrollTrigger: { trigger: "#contact-desc", start: "top 80%" } }
-            );
-            gsap.fromTo("#contact-btn", 
-              { opacity: 0, y: 30 }, 
-              { opacity: 1, y: 0, duration: 1, scrollTrigger: { trigger: "#contact-btn", start: "top 80%" } }
-            );
-          });
-        });
-      }).catch(err => console.warn("3D disabled:", err));
+    // Adjust camera for desktop vs mobile
+    const isMobile = window.innerWidth < 1024;
+    if (isMobile) {
+      camera.position.set(0, 0, 6);
     } else {
-      // Fallback: simple fade-in without 3D
-      document.getElementById('scene-container').style.display = 'none';
-      setTimeout(() => {
-        document.querySelectorAll('.opacity-0').forEach(el => {
-          el.style.opacity = '1';
-          el.style.transform = 'translateY(0)';
-          el.style.transition = 'opacity 0.8s, transform 0.8s';
-        });
-      }, 300);
+      camera.position.set(8, 0, 6); // Right-side view
+      camera.lookAt(0, 0, 0);
     }
+
+    // Create multiple cubes
+    const cubes = [];
+    const colors = [0x00eeff, 0xff00cc, 0x00ff99, 0xffaa00];
+    const positions = isMobile 
+      ? [[0, -2, 0], [0, 0, 0], [0, 2, 0]]
+      : [[-2, -1, 0], [0, 0, 0], [2, 1, 0]];
+
+    positions.forEach((pos, i) => {
+      const geo = new THREE.BoxGeometry(1.2, 1.2, 1.2);
+      const mat = new THREE.MeshStandardMaterial({
+        color: colors[i % colors.length],
+        roughness: 0.1,
+        metalness: 0.8,
+        emissive: colors[i % colors.length],
+        emissiveIntensity: 0.1
+      });
+      const cube = new THREE.Mesh(geo, mat);
+      cube.position.set(...pos);
+      scene.add(cube);
+      cubes.push({ mesh: cube, basePos: new THREE.Vector3(...pos) });
+    });
+
+    // Lights
+    const ambient = new THREE.AmbientLight(0xffffff, 0.3);
+    scene.add(ambient);
+    const dirLight = new THREE.DirectionalLight(0xffffff, 1);
+    dirLight.position.set(5, 5, 5);
+    scene.add(dirLight);
+
+    // Handle resize
+    window.addEventListener('resize', () => {
+      camera.aspect = window.innerWidth / window.innerHeight;
+      camera.updateProjectionMatrix();
+      renderer.setSize(window.innerWidth, window.innerHeight);
+      
+      // Re-adjust layout
+      const newIsMobile = window.innerWidth < 1024;
+      if (newIsMobile) {
+        camera.position.set(0, 0, 6);
+        camera.lookAt(0, 0, 0);
+        // Update cube positions for mobile
+        cubes[0].mesh.position.set(0, -2, 0);
+        cubes[1].mesh.position.set(0, 0, 0);
+        cubes[2].mesh.position.set(0, 2, 0);
+      } else {
+        camera.position.set(8, 0, 6);
+        camera.lookAt(0, 0, 0);
+        cubes[0].mesh.position.set(-2, -1, 0);
+        cubes[1].mesh.position.set(0, 0, 0);
+        cubes[2].mesh.position.set(2, 1, 0);
+      }
+    });
+
+    // GSAP Scroll-Driven Morph Effect
+    gsap.registerPlugin(ScrollTrigger);
+
+    // Animate cubes on scroll
+    gsap.to(cubes[0].mesh.rotation, {
+      y: Math.PI * 2,
+      x: Math.PI,
+      duration: 4,
+      scrollTrigger: {
+        trigger: "body",
+        start: "top top",
+        end: "+=200%",
+        scrub: true
+      }
+    });
+
+    gsap.to(cubes[1].mesh.scale, {
+      x: 1.8,
+      y: 1.8,
+      z: 1.8,
+      duration: 3,
+      scrollTrigger: {
+        trigger: "body",
+        start: "top top",
+        end: "+=150%",
+        scrub: true
+      }
+    });
+
+    gsap.to(cubes[2].mesh.position, {
+      x: isMobile ? 0 : 3,
+      y: isMobile ? 3 : 2,
+      z: 0,
+      duration: 5,
+      scrollTrigger: {
+        trigger: "body",
+        start: "top top",
+        end: "+=250%",
+        scrub: true
+      }
+    });
+
+    // Auto-spin base animation
+    const animate = () => {
+      requestAnimationFrame(animate);
+      
+      cubes.forEach(c => {
+        c.mesh.rotation.x += 0.005;
+        c.mesh.rotation.y += 0.005;
+      });
+
+      renderer.render(scene, camera);
+    };
+    animate();
   </script>
 </body>
 </html>
