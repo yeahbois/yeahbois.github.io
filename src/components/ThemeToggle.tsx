@@ -26,7 +26,7 @@ export const ThemeToggle = () => {
       variant="ghost"
       size="icon"
       onClick={toggleTheme}
-      className="fixed top-6 right-6 z-50 glass rounded-full hover:scale-110 transition-transform duration-300"
+      className="fixed mb-10 top-6 right-6 z-50 glass rounded-full hover:scale-110 transition-transform duration-300"
       aria-label="Toggle theme"
     >
       {theme === "light" ? (
