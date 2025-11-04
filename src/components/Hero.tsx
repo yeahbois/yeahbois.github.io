@@ -40,7 +40,7 @@ export const Hero = () => {
             className="text-xl md:text-2xl text-muted-foreground max-w-2xl mx-auto"
           >
             Transforming data into insights and building intelligent solutions
-            for the future
+            for the future. #BuildingABetterFuture
           </motion.p>
 
           {/* CTA Buttons */}
