@@ -26,9 +26,9 @@ export const Hero = () => {
         >
           {/* Main Heading */}
           <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold tracking-tight">
-            <span className="block text-foreground">Your Name</span>
+            <span className="block text-foreground">yb#2702</span>
             <span className="block gradient-text mt-2">
-              AI Developer & Data Analyst
+              Web Developer & AI Engineer
             </span>
           </h1>
 
