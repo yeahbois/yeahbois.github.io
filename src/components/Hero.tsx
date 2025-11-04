@@ -25,9 +25,9 @@ export const Hero = () => {
           className="text-center space-y-8"
         >
           {/* Main Heading */}
-          <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold tracking-tight">
-            <span className="block text-foreground">yb#2702</span>
-            <span className="block gradient-text mt-2">
+          <h1 className="font-bold tracking-tight">
+            <span className="text-5xl md:text-7xl lg:text-8xl block text-foreground">yb#2702</span>
+            <span className="text-2xl md:text-5xl lg:text-4xl block gradient-text mt-2">
               Web Developer & AI Engineer
             </span>
           </h1>
