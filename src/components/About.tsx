@@ -4,18 +4,20 @@ import { useRef } from "react";
 import { Badge } from "@/components/ui/badge";
 
 const skills = [
-  "Machine Learning",
-  "Deep Learning",
+  "PHP",
+  "JavaScript",
   "Python",
-  "TensorFlow",
-  "PyTorch",
-  "Data Visualization",
+  "HTML CSS JS",
+  "GoLang",
+  "Rust",
   "SQL",
-  "React",
-  "TypeScript",
-  "Node.js",
+  "MongoDB",
   "APIs",
-  "Cloud Computing",
+  "Machine Learning",
+  "Laravel",
+  "Blade.PHP",
+  "Express.js",
+  "Data Analysis"
 ];
 
 export const About = () => {
@@ -41,7 +43,7 @@ export const About = () => {
           >
             <div className="glass rounded-3xl p-8 shadow-soft">
               <div className="aspect-square rounded-2xl bg-gradient-to-br from-primary/20 to-accent/20 flex items-center justify-center">
-                <div className="text-6xl md:text-8xl font-bold gradient-text">YN</div>
+                <div className="text-6xl md:text-8xl font-bold gradient-text">YB</div>
               </div>
             </div>
             {/* Floating decoration */}
@@ -60,14 +62,14 @@ export const About = () => {
                 About <span className="gradient-text">Me</span>
               </h2>
               <p className="text-lg text-muted-foreground leading-relaxed mb-6">
-                I'm a passionate <strong>Freelance AI Developer</strong>,{" "}
-                <strong>Data Analyst</strong>, and{" "}
+                I'm a passionate <strong>Freelance Multipurpose Developer</strong>,{" "}
+                <strong>Machine Learning</strong>, and{" "}
                 <strong>Web Developer</strong> with a focus on creating
                 innovative solutions that bridge the gap between data and
                 actionable insights.
               </p>
               <p className="text-lg text-muted-foreground leading-relaxed">
-                With expertise in machine learning, data visualization, and
+                With experience in machine learning, data visualization, and
                 modern web technologies, I help businesses leverage AI and data
                 to drive growth and make informed decisions. Let's build
                 something amazing together.
