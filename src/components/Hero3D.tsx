@@ -1,22 +1,12 @@
-import { Canvas, useFrame } from "@react-three/fiber";
+import { Canvas } from "@react-three/fiber";
 import { OrbitControls, Sphere, Box, Torus, MeshDistortMaterial, Float } from "@react-three/drei";
-import { useRef } from "react";
 import * as THREE from "three";
 
 // Animated sphere component
 function AnimatedSphere() {
-  const meshRef = useRef<THREE.Mesh>(null);
-
-  useFrame((state) => {
-    if (meshRef.current) {
-      meshRef.current.rotation.x = state.clock.getElapsedTime() * 0.2;
-      meshRef.current.rotation.y = state.clock.getElapsedTime() * 0.3;
-    }
-  });
-
   return (
     <Float speed={2} rotationIntensity={0.5} floatIntensity={0.5}>
-      <Sphere args={[1, 100, 200]} scale={2.5} ref={meshRef} position={[0, 0, 0]}>
+      <Sphere args={[1, 100, 200]} scale={2.5} position={[0, 0, 0]}>
         <MeshDistortMaterial
           color="#5B8ADF"
           attach="material"
