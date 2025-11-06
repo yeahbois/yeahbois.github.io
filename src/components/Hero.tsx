@@ -130,25 +130,15 @@ export const Hero = () => {
             initial={{ opacity: 0, x: 30 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8, ease: "easeOut", delay: 0.2 }}
-            className="flex justify-center items-center h-full scale-250 relative"
+            className="flex justify-center items-center h-full scale-[2] md:scale-[2.5] lg:scale-[3] relative"
           >
             <Laptop3D />
           </motion.div>
         </div>
 
         {/* Mobile Layout: Stacked */}
-        <div className="lg:hidden flex flex-col items-center justify-center h-full space-y-8">
-          {/* MacBook on Top for Mobile */}
-          <motion.div
-            initial={{ opacity: 0, y: -30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, ease: "easeOut" }}
-            className="w-full max-w-md h-64 flex justify-center items-center scale-200 relative"
-          >
-            <Laptop3D />
-          </motion.div>
-
-          {/* Original Content Below for Mobile */}
+        <div className="lg:hidden flex flex-col items-center justify-center h-full space-y-8 pt-24">
+          {/* Original Content on Top for Mobile */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
@@ -249,6 +239,15 @@ export const Hero = () => {
                 </Button>
               </div>
             </motion.div>
+          </motion.div>
+          {/* MacBook on Bottom for Mobile */}
+          <motion.div
+            initial={{ opacity: 0, y: -30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, ease: "easeOut" }}
+            className="w-full max-w-md h-64 flex justify-center items-center scale-[1.5] relative"
+          >
+            <Laptop3D />
           </motion.div>
         </div>
 
