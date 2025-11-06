@@ -97,7 +97,6 @@ export const Navbar = () => {
 
             {/* Mobile Menu Button */}
             <div className="md:hidden flex items-center">
-              <ThemeToggle />
               <Button
                 variant="ghost"
                 size="icon"
@@ -147,6 +146,7 @@ export const Navbar = () => {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.3, delay: 0.4 }}
+                className="flex items-center justify-center gap-4"
               >
                 <Button
                   variant="gradient"
@@ -156,6 +156,7 @@ export const Navbar = () => {
                 >
                   Let's Talk
                 </Button>
+                <ThemeToggle />
               </motion.div>
             </div>
           </motion.div>

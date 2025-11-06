@@ -130,7 +130,7 @@ export const Hero = () => {
             initial={{ opacity: 0, x: 30 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8, ease: "easeOut", delay: 0.2 }}
-            className="flex justify-center items-center h-full scale-[2] md:scale-[2.5] lg:scale-[3] relative"
+            className="flex justify-center items-center h-full relative"
           >
             <Laptop3D />
           </motion.div>
@@ -245,7 +245,7 @@ export const Hero = () => {
             initial={{ opacity: 0, y: -30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, ease: "easeOut" }}
-            className="w-full max-w-md h-64 flex justify-center items-center scale-[1.5] relative"
+            className="w-full h-96"
           >
             <Laptop3D />
           </motion.div>
