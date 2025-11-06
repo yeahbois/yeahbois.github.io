@@ -76,7 +76,7 @@ export const Laptop3D = () => {
         laptopRef.current = laptop;
 
         // Scale and position the model
-        laptop.scale.set(3, 3, 3);
+        laptop.scale.set(2.5, 2.5, 2.5);
         laptop.position.set(0, -1, 0);
         laptop.rotation.y = -Math.PI / 4; // Initial rotation
 
@@ -89,10 +89,13 @@ export const Laptop3D = () => {
     );
 
     // Enhanced lighting setup
-    const ambientLight = new THREE.AmbientLight(0xffffff, 0.5);
+    const ambientLight = new THREE.AmbientLight(0xffffff, 1.0);
     scene.add(ambientLight);
 
-    const directionalLight = new THREE.DirectionalLight(0xffffff, 1.0);
+    const hemisphereLight = new THREE.HemisphereLight(0xffffff, 0x000000, 0.5);
+    scene.add(hemisphereLight);
+
+    const directionalLight = new THREE.DirectionalLight(0xffffff, 1.5);
     directionalLight.position.set(5, 10, 7.5);
     directionalLight.castShadow = true;
     directionalLight.shadow.mapSize.width = 2048;
