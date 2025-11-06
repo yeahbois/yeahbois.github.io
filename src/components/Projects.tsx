@@ -7,7 +7,7 @@ import { ExternalLink } from "lucide-react";
 
 const projects = [
   {
-    title: "AI Sentiment Analysis Tool",
+    title: "AI Testing Analysis Tool",
     description: "Real-time sentiment analysis platform using NLP and machine learning to analyze customer feedback across multiple channels.",
     image: "gradient-from-blue-500-to-purple-600",
     tags: ["Python", "TensorFlow", "NLP", "React"],
@@ -108,7 +108,7 @@ export const Projects = () => {
                     className="w-full group/btn"
                     asChild
                   >
-                    <a href="#" onClick={(e) => e.preventDefault()}>
+                    <a href="#hello" onClick={(e) => e.preventDefault()}>
                       View Details
                       <ExternalLink className="ml-2 h-4 w-4 group-hover/btn:translate-x-1 transition-transform" />
                     </a>
