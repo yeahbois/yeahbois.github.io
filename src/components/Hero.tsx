@@ -257,7 +257,7 @@ export const Hero = () => {
           animate={{ opacity: 1 }}
           transition={{ delay: 1, duration: 0.8 }}
           onClick={() => scrollToSection("about")}
-          className="absolute bottom-10 left-1/2 -translate-x-1/2 animate-float cursor-pointer group mb-16"
+          className="absolute bottom-10 left-1/2 -translate-x-1/2 animate-float cursor-pointer group lg:mb-0 mb-24"
           aria-label="Scroll to About section"
         >
           <ChevronDown className="h-8 w-8 text-muted-foreground group-hover:text-primary transition-colors" />
