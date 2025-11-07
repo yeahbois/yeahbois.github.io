@@ -77,7 +77,8 @@ export const Laptop3D = () => {
         laptopRef.current = laptop;
 
         // Scale and position the model
-        laptop.scale.set(0.1, 0.1, 0.1);
+        const scale = window.innerWidth < 768 ? 0.08 : 0.1;
+        laptop.scale.set(scale, scale, scale);
         laptop.position.set(0, -0.7, 0); // Lower the model
         laptop.rotation.y = -Math.PI / 4; // Initial rotation
 
@@ -178,7 +179,7 @@ export const Laptop3D = () => {
       const silverMaterial = new THREE.MeshStandardMaterial({ color: 0xD3D3D3, metalness: 0.5, roughness: 0.5 }); // Silver
 
       laptopRef.current.traverse((child) => {
-        if (child instanceof THREE.Mesh && !child.name.includes('Object_4')) {
+        if (child instanceof THREE.Mesh && !child.material.map) {
           child.material = theme === 'dark' ? silverMaterial : darkMaterial;
         }
       });

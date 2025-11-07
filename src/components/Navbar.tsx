@@ -84,6 +84,7 @@ export const Navbar = () => {
                 >
                   Let's Talk
                 </Button>
+                <ThemeToggle />
               </motion.div>
               <motion.div
                 initial={{ opacity: 0, y: -20 }}
