@@ -92,6 +92,7 @@ export const Laptop3D = () => {
 
         const texture = new THREE.VideoTexture(video);
         texture.flipY = false;
+        texture.colorSpace = THREE.SRGBColorSpace;
 
         const screenMaterial = new THREE.MeshBasicMaterial({ map: texture });
 
@@ -177,7 +178,7 @@ export const Laptop3D = () => {
       const silverMaterial = new THREE.MeshStandardMaterial({ color: 0xD3D3D3, metalness: 0.5, roughness: 0.5 }); // Silver
 
       laptopRef.current.traverse((child) => {
-        if (child instanceof THREE.Mesh) {
+        if (child instanceof THREE.Mesh && !child.name.includes('Object_4')) {
           child.material = theme === 'dark' ? silverMaterial : darkMaterial;
         }
       });
