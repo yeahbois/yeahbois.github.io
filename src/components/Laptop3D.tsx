@@ -9,6 +9,7 @@ type Theme = 'light' | 'dark';
 
 export const Laptop3D = () => {
   const mountRef = useRef<HTMLDivElement>(null);
+  const [isLoading, setIsLoading] = useState(true);
   const [isDragging, setIsDragging] = useState(false);
   const [previousMousePosition, setPreviousMousePosition] = useState({ x: 0, y: 0 });
   const laptopRef = useRef<THREE.Group | null>(null);
@@ -17,8 +18,6 @@ export const Laptop3D = () => {
   const rendererRef = useRef<THREE.WebGLRenderer | null>(null);
   const animationIdRef = useRef<number | null>(null);
   const [theme, setTheme] = useState<Theme>('light');
-  const videoTextureRef = useRef<THREE.VideoTexture | null>(null);
-  const videoRef = useRef<HTMLVideoElement | null>(null);
 
   // Function to get the current theme
   const getTheme = (): Theme => {
@@ -79,49 +78,19 @@ export const Laptop3D = () => {
         laptopRef.current = laptop;
 
         // Scale and position the model
-        const scale = window.innerWidth < 768 ? 0.06 : 0.09;
+        const scale = window.innerWidth < 768 ? 0.03 : 0.09;
         laptop.scale.set(scale, scale, scale);
         laptop.position.set(0, -0.7, 0); // Lower the model
         laptop.rotation.y = -Math.PI / 4; // Initial rotation
 
-        // Apply video texture to the screen
-        const video = document.createElement('video');
-        videoRef.current = video;
-        video.src = '/coding-video.mp4';
-        video.loop = true;
-        video.muted = true;
-        video.crossOrigin = 'anonymous';
-        video.playsInline = true;
-
-        video.addEventListener('canplaythrough', () => {
-          const playPromise = video.play();
-          if (playPromise !== undefined) {
-            playPromise.catch(error => {
-              console.error("Video autoplay was prevented. Click the model to start.", error);
-            });
-          }
-
-          const texture = new THREE.VideoTexture(video);
-          texture.flipY = false;
-          texture.colorSpace = THREE.SRGBColorSpace;
-          videoTextureRef.current = texture;
-
-          const screenMaterial = new THREE.MeshBasicMaterial({ map: texture });
-
-          laptop.traverse((child) => {
-            if (child instanceof THREE.Mesh && child.name.includes('Object_4')) {
-              child.material = screenMaterial;
-            }
-          });
-        });
-
-        video.load();
 
         scene.add(laptop);
+        setIsLoading(false);
       },
       undefined,
       (error) => {
         console.error('An error happened while loading the model:', error);
+        setIsLoading(false);
       }
     );
 
@@ -157,10 +126,6 @@ export const Laptop3D = () => {
         }
       }
       
-      if (videoTextureRef.current) {
-        videoTextureRef.current.needsUpdate = true;
-      }
-
       renderer.render(scene, camera);
     };
     
@@ -207,11 +172,6 @@ export const Laptop3D = () => {
 
   // Mouse and touch events
   const handleMouseDown = (e: React.MouseEvent) => {
-    if (videoRef.current && videoRef.current.paused) {
-      videoRef.current.play().catch(error => {
-        console.error("Video play on click failed:", error);
-      });
-    }
     setIsDragging(true);
     setPreviousMousePosition({ x: e.clientX, y: e.clientY });
   };
@@ -234,11 +194,6 @@ export const Laptop3D = () => {
   };
 
   const handleTouchStart = (e: React.TouchEvent) => {
-    if (videoRef.current && videoRef.current.paused) {
-      videoRef.current.play().catch(error => {
-        console.error("Video play on touch failed:", error);
-      });
-    }
     setIsDragging(true);
     setPreviousMousePosition({ 
       x: e.touches[0].clientX, 
@@ -267,17 +222,24 @@ export const Laptop3D = () => {
   };
 
   return (
-    <div 
-      ref={mountRef} 
-      className="w-full h-full cursor-grab active:cursor-grabbing"
-      onMouseDown={handleMouseDown}
-      onMouseMove={handleMouseMove}
-      onMouseUp={handleMouseUp}
-      onMouseLeave={handleMouseUp}
-      onTouchStart={handleTouchStart}
-      onTouchMove={handleTouchMove}
-      onTouchEnd={handleTouchEnd}
-      style={{ touchAction: 'none' }} // Prevents default touch actions
-    />
+    <div className="relative w-full h-full">
+      {isLoading && (
+        <div className="absolute top-0 left-0 flex items-center justify-center w-full h-full">
+          <p className="text-lg text-gray-500">Loading...</p>
+        </div>
+      )}
+      <div
+        ref={mountRef}
+        className="w-full h-full cursor-grab active:cursor-grabbing"
+        onMouseDown={handleMouseDown}
+        onMouseMove={handleMouseMove}
+        onMouseUp={handleMouseUp}
+        onMouseLeave={handleMouseUp}
+        onTouchStart={handleTouchStart}
+        onTouchMove={handleTouchMove}
+        onTouchEnd={handleTouchEnd}
+        style={{ touchAction: 'none' }} // Prevents default touch actions
+      />
+    </div>
   );
 };

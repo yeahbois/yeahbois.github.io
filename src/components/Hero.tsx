@@ -30,7 +30,7 @@ export const Hero = () => {
             className="text-center space-y-8"
           >
             {/* Main Heading */}
-            <h1 className="font-bold tracking-tight">
+            <h1 className="font-bold tracking-tight font-lato">
               <span className="text-5xl md:text-7xl lg:text-8xl block text-foreground">yb#2702</span>
               <span className="text-2xl md:text-5xl lg:text-4xl block gradient-text mt-2">
                 Web Developer & AI Engineer
@@ -42,7 +42,7 @@ export const Hero = () => {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.3, duration: 0.8 }}
-              className="text-xl md:text-2xl text-muted-foreground max-w-2xl mx-auto"
+              className="text-xl md:text-2xl text-muted-foreground max-w-2xl mx-auto font-questrial"
             >
               Transforming dreams into reality and building intelligent solutions
               for the future. #BuildingABetterFuture
@@ -137,7 +137,7 @@ export const Hero = () => {
         </div>
 
         {/* Mobile Layout: Stacked */}
-        <div className="lg:hidden flex flex-col items-center justify-center h-full space-y-8 pt-24">
+        <div className="lg:hidden flex flex-col-reverse items-center justify-center h-full space-y-8 pt-24">
           {/* MacBook on Top for Mobile */}
           <motion.div
             initial={{ opacity: 0, y: -30 }}
@@ -155,7 +155,7 @@ export const Hero = () => {
             className="text-center space-y-8 w-full"
           >
             {/* Main Heading */}
-            <h1 className="font-bold tracking-tight">
+            <h1 className="font-bold tracking-tight font-lato">
               <span className="text-5xl md:text-7xl block text-foreground">yb#2702</span>
               <span className="text-2xl md:text-5xl block gradient-text mt-2">
                 Web Developer & AI Engineer
@@ -167,7 +167,7 @@ export const Hero = () => {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.3, duration: 0.8 }}
-              className="text-xl md:text-2xl text-muted-foreground max-w-2xl mx-auto"
+              className="text-xl md:text-2xl text-muted-foreground max-w-2xl mx-auto font-questrial"
             >
               Transforming dreams into reality and building intelligent solutions
               for the future. #BuildingABetterFuture
@@ -257,7 +257,7 @@ export const Hero = () => {
           animate={{ opacity: 1 }}
           transition={{ delay: 1, duration: 0.8 }}
           onClick={() => scrollToSection("about")}
-          className="absolute bottom-10 left-1/2 -translate-x-1/2 animate-float cursor-pointer group lg:mb-0 mb-24"
+          className="absolute bottom-10 left-1/2 -translate-x-1/2 animate-float cursor-pointer group lg:mb-0 mb-24 hidden lg:block"
           aria-label="Scroll to About section"
         >
           <ChevronDown className="h-8 w-8 text-muted-foreground group-hover:text-primary transition-colors" />
