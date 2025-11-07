@@ -93,25 +93,29 @@ export const Laptop3D = () => {
         video.crossOrigin = 'anonymous';
         video.playsInline = true;
 
-        const playPromise = video.play();
-        if (playPromise !== undefined) {
-          playPromise.catch(error => {
-            console.error("Video autoplay was prevented. Click the model to start.", error);
-          });
-        }
-
-        const texture = new THREE.VideoTexture(video);
-        texture.flipY = false;
-        texture.colorSpace = THREE.SRGBColorSpace;
-        videoTextureRef.current = texture;
-
-        const screenMaterial = new THREE.MeshBasicMaterial({ map: texture });
-
-        laptop.traverse((child) => {
-          if (child instanceof THREE.Mesh && child.name.includes('Object_4')) {
-            child.material = screenMaterial;
+        video.addEventListener('canplaythrough', () => {
+          const playPromise = video.play();
+          if (playPromise !== undefined) {
+            playPromise.catch(error => {
+              console.error("Video autoplay was prevented. Click the model to start.", error);
+            });
           }
+
+          const texture = new THREE.VideoTexture(video);
+          texture.flipY = false;
+          texture.colorSpace = THREE.SRGBColorSpace;
+          videoTextureRef.current = texture;
+
+          const screenMaterial = new THREE.MeshBasicMaterial({ map: texture });
+
+          laptop.traverse((child) => {
+            if (child instanceof THREE.Mesh && child.name.includes('Object_4')) {
+              child.material = screenMaterial;
+            }
+          });
         });
+
+        video.load();
 
         scene.add(laptop);
       },
