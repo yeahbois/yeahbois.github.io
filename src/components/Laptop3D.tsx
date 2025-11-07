@@ -76,7 +76,7 @@ export const Laptop3D = () => {
         laptopRef.current = laptop;
 
         // Scale and position the model
-        laptop.scale.set(1.2, 1.2, 1.2);
+        laptop.scale.set(0.8, 0.8, 0.8);
         laptop.position.set(0, -0.8, 0); // Lower the model
         laptop.rotation.y = -Math.PI / 4; // Initial rotation
 
