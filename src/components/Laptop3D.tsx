@@ -18,6 +18,7 @@ export const Laptop3D = () => {
   const animationIdRef = useRef<number | null>(null);
   const [theme, setTheme] = useState<Theme>('light');
   const videoTextureRef = useRef<THREE.VideoTexture | null>(null);
+  const videoRef = useRef<HTMLVideoElement | null>(null);
 
   // Function to get the current theme
   const getTheme = (): Theme => {
@@ -85,12 +86,19 @@ export const Laptop3D = () => {
 
         // Apply video texture to the screen
         const video = document.createElement('video');
+        videoRef.current = video;
         video.src = '/coding-video.mp4';
         video.loop = true;
         video.muted = true;
         video.crossOrigin = 'anonymous';
         video.playsInline = true;
-        video.play();
+
+        const playPromise = video.play();
+        if (playPromise !== undefined) {
+          playPromise.catch(error => {
+            console.error("Video autoplay was prevented. Click the model to start.", error);
+          });
+        }
 
         const texture = new THREE.VideoTexture(video);
         texture.flipY = false;
@@ -195,6 +203,11 @@ export const Laptop3D = () => {
 
   // Mouse and touch events
   const handleMouseDown = (e: React.MouseEvent) => {
+    if (videoRef.current && videoRef.current.paused) {
+      videoRef.current.play().catch(error => {
+        console.error("Video play on click failed:", error);
+      });
+    }
     setIsDragging(true);
     setPreviousMousePosition({ x: e.clientX, y: e.clientY });
   };
@@ -217,6 +230,11 @@ export const Laptop3D = () => {
   };
 
   const handleTouchStart = (e: React.TouchEvent) => {
+    if (videoRef.current && videoRef.current.paused) {
+      videoRef.current.play().catch(error => {
+        console.error("Video play on touch failed:", error);
+      });
+    }
     setIsDragging(true);
     setPreviousMousePosition({ 
       x: e.touches[0].clientX, 
