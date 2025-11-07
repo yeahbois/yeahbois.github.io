@@ -76,8 +76,8 @@ export const Laptop3D = () => {
         laptopRef.current = laptop;
 
         // Scale and position the model
-        laptop.scale.set(2, 2, 2);
-        laptop.position.set(0, -1, 0);
+        laptop.scale.set(1.2, 1.2, 1.2);
+        laptop.position.set(0, -0.8, 0); // Lower the model
         laptop.rotation.y = -Math.PI / 4; // Initial rotation
 
         scene.add(laptop);
@@ -89,10 +89,10 @@ export const Laptop3D = () => {
     );
 
     // Enhanced lighting setup
-    const ambientLight = new THREE.AmbientLight(0xffffff, 1.0);
+    const ambientLight = new THREE.AmbientLight(0xffffff, 2.5); // Boosted ambient light
     scene.add(ambientLight);
 
-    const hemisphereLight = new THREE.HemisphereLight(0xffffff, 0x000000, 0.5);
+    const hemisphereLight = new THREE.HemisphereLight(0xffffff, 0x000000, 0.8);
     scene.add(hemisphereLight);
 
     const directionalLight = new THREE.DirectionalLight(0xffffff, 1.5);
@@ -156,8 +156,8 @@ export const Laptop3D = () => {
   // Update laptop color based on theme
   useEffect(() => {
     if (laptopRef.current) {
-      const darkMaterial = new THREE.MeshStandardMaterial({ color: 0x333333, metalness: 0.8, roughness: 0.2 }); // Dark Gray
-      const silverMaterial = new THREE.MeshStandardMaterial({ color: 0xcccccc, metalness: 0.8, roughness: 0.2 }); // Silver
+      const darkMaterial = new THREE.MeshStandardMaterial({ color: 0x4B4B4B, metalness: 0.5, roughness: 0.5 }); // Space Gray
+      const silverMaterial = new THREE.MeshStandardMaterial({ color: 0xD3D3D3, metalness: 0.5, roughness: 0.5 }); // Silver
 
       laptopRef.current.traverse((child) => {
         if (child instanceof THREE.Mesh) {

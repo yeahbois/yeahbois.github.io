@@ -11,9 +11,6 @@ const Index = () => {
     <div className="min-h-screen bg-background">
       {/* Navigation */}
       <Navbar />
-      
-      {/* Theme Toggle */}
-      <ThemeToggle />
 
       {/* Main Content */}
       <main>

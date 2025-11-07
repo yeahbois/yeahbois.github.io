@@ -84,6 +84,13 @@ export const Navbar = () => {
                 >
                   Let's Talk
                 </Button>
+              </motion.div>
+              <motion.div
+                initial={{ opacity: 0, y: -20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 0.5 }}
+                className="ml-4"
+              >
                 <ThemeToggle />
               </motion.div>
             </div>
@@ -149,7 +156,6 @@ export const Navbar = () => {
                 >
                   Let's Talk
                 </Button>
-                <ThemeToggle />
               </motion.div>
             </div>
           </motion.div>
