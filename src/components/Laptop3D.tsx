@@ -17,6 +17,7 @@ export const Laptop3D = () => {
   const rendererRef = useRef<THREE.WebGLRenderer | null>(null);
   const animationIdRef = useRef<number | null>(null);
   const [theme, setTheme] = useState<Theme>('light');
+  const videoTextureRef = useRef<THREE.VideoTexture | null>(null);
 
   // Function to get the current theme
   const getTheme = (): Theme => {
@@ -94,6 +95,7 @@ export const Laptop3D = () => {
         const texture = new THREE.VideoTexture(video);
         texture.flipY = false;
         texture.colorSpace = THREE.SRGBColorSpace;
+        videoTextureRef.current = texture;
 
         const screenMaterial = new THREE.MeshBasicMaterial({ map: texture });
 
@@ -143,6 +145,10 @@ export const Laptop3D = () => {
         }
       }
       
+      if (videoTextureRef.current) {
+        videoTextureRef.current.needsUpdate = true;
+      }
+
       renderer.render(scene, camera);
     };
     
