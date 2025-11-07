@@ -42,7 +42,7 @@ export const Hero = () => {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.3, duration: 0.8 }}
-              className="text-xl md:text-2xl text-muted-foreground max-w-2xl mx-auto font-questrial"
+              className="text-xl md:text-2xl text-muted-foreground max-w-2xl mx-auto font-elms-sans"
             >
               Transforming dreams into reality and building intelligent solutions
               for the future. #BuildingABetterFuture
@@ -137,7 +137,7 @@ export const Hero = () => {
         </div>
 
         {/* Mobile Layout: Stacked */}
-        <div className="lg:hidden flex flex-col-reverse items-center justify-center h-full space-y-8 pt-24">
+        <div className="lg:hidden flex flex-col items-center justify-center h-full space-y-8 pt-24">
           {/* MacBook on Top for Mobile */}
           <motion.div
             initial={{ opacity: 0, y: -30 }}
@@ -167,7 +167,7 @@ export const Hero = () => {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.3, duration: 0.8 }}
-              className="text-xl md:text-2xl text-muted-foreground max-w-2xl mx-auto font-questrial"
+              className="text-xl md:text-2xl text-muted-foreground max-w-2xl mx-auto font-elms-sans"
             >
               Transforming dreams into reality and building intelligent solutions
               for the future. #BuildingABetterFuture

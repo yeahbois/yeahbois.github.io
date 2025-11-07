@@ -78,7 +78,7 @@ export const Laptop3D = () => {
         laptopRef.current = laptop;
 
         // Scale and position the model
-        const scale = window.innerWidth < 768 ? 0.03 : 0.09;
+        const scale = window.innerWidth < 768 ? 0.08 : 0.09;
         laptop.scale.set(scale, scale, scale);
         laptop.position.set(0, -0.7, 0); // Lower the model
         laptop.rotation.y = -Math.PI / 4; // Initial rotation
@@ -225,7 +225,7 @@ export const Laptop3D = () => {
     <div className="relative w-full h-full">
       {isLoading && (
         <div className="absolute top-0 left-0 flex items-center justify-center w-full h-full">
-          <p className="text-lg text-gray-500">Loading...</p>
+          <div className="loader"></div>
         </div>
       )}
       <div

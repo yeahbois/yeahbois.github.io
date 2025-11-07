@@ -14,7 +14,7 @@ export default {
     },
     extend: {
       fontFamily: {
-        'questrial': ['Questrial', 'sans-serif'],
+        'elms-sans': ['"Elms Sans"', 'sans-serif'],
         'lato': ['Lato', 'sans-serif'],
       },
       colors: {
