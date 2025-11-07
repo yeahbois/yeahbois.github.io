@@ -138,7 +138,16 @@ export const Hero = () => {
 
         {/* Mobile Layout: Stacked */}
         <div className="lg:hidden flex flex-col items-center justify-center h-full space-y-8 pt-24">
-          {/* Original Content on Top for Mobile */}
+          {/* MacBook on Top for Mobile */}
+          <motion.div
+            initial={{ opacity: 0, y: -30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, ease: "easeOut" }}
+            className="w-full h-96"
+          >
+            <Laptop3D />
+          </motion.div>
+          {/* Original Content on Bottom for Mobile */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
@@ -239,15 +248,6 @@ export const Hero = () => {
                 </Button>
               </div>
             </motion.div>
-          </motion.div>
-          {/* MacBook on Bottom for Mobile */}
-          <motion.div
-            initial={{ opacity: 0, y: -30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, ease: "easeOut" }}
-            className="w-full h-96"
-          >
-            <Laptop3D />
           </motion.div>
         </div>
 

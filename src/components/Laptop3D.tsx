@@ -23,6 +23,7 @@ export const Laptop3D = () => {
     return document.documentElement.classList.contains('dark') ? 'dark' : 'light';
   };
 
+
   useEffect(() => {
     // Set initial theme
     setTheme(getTheme());
@@ -80,6 +81,26 @@ export const Laptop3D = () => {
         laptop.position.set(0, -0.7, 0); // Lower the model
         laptop.rotation.y = -Math.PI / 4; // Initial rotation
 
+        // Apply video texture to the screen
+        const video = document.createElement('video');
+        video.src = '/coding-video.mp4';
+        video.loop = true;
+        video.muted = true;
+        video.crossOrigin = 'anonymous';
+        video.playsInline = true;
+        video.play();
+
+        const texture = new THREE.VideoTexture(video);
+        texture.flipY = false;
+
+        const screenMaterial = new THREE.MeshBasicMaterial({ map: texture });
+
+        laptop.traverse((child) => {
+          if (child instanceof THREE.Mesh && child.name.includes('Object_4')) {
+            child.material = screenMaterial;
+          }
+        });
+
         scene.add(laptop);
       },
       undefined,
@@ -116,11 +137,7 @@ export const Laptop3D = () => {
       
       if (laptopRef.current) {
         if (!isDragging) {
-          laptopRef.current.rotation.y += rotationVelocity.current.y;
-          laptopRef.current.rotation.x += rotationVelocity.current.x;
-          
-          rotationVelocity.current.x *= 0.98; // Dampen rotation
-          rotationVelocity.current.y *= 0.98;
+          laptopRef.current.rotation.y += 0.001;
         }
       }
       
