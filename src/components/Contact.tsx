@@ -33,8 +33,8 @@ export const Contact = () => {
 
     // Simulate form submission
     toast({
-      title: "Message Sent! 🚀",
-      description: "Thank you for reaching out. I'll get back to you soon!",
+      title: "Coming Soon!",
+      description: "This form is still on maintenance, please wait until this feature is unlocked!",
     });
 
     // Reset form
@@ -145,7 +145,7 @@ export const Contact = () => {
               
               <div className="space-y-6">
                 <a
-                  href="mailto:your.email@example.com"
+                  href="mailto:marcellolienarta663@gmail.com"
                   className="flex items-center gap-4 text-muted-foreground hover:text-primary transition-colors group"
                 >
                   <div className="glass p-3 rounded-full group-hover:shadow-glow transition-all">
@@ -153,12 +153,12 @@ export const Contact = () => {
                   </div>
                   <div>
                     <p className="font-medium text-foreground">Email</p>
-                    <p className="text-sm">your.email@example.com</p>
+                    <p className="text-sm">marcellolienarta663@gmail.com</p>
                   </div>
                 </a>
 
                 <a
-                  href="tel:+1234567890"
+                  href="tel:+6285652233323"
                   className="flex items-center gap-4 text-muted-foreground hover:text-primary transition-colors group"
                 >
                   <div className="glass p-3 rounded-full group-hover:shadow-glow transition-all">
@@ -166,12 +166,12 @@ export const Contact = () => {
                   </div>
                   <div>
                     <p className="font-medium text-foreground">Phone</p>
-                    <p className="text-sm">+1 (234) 567-890</p>
+                    <p className="text-sm">(+62) 856-5223-3323</p>
                   </div>
                 </a>
 
                 <a
-                  href="https://linkedin.com/in/yourprofile"
+                  href="https://www.linkedin.com/in/marcello-lienarta-260328315/"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="flex items-center gap-4 text-muted-foreground hover:text-primary transition-colors group"
@@ -181,12 +181,12 @@ export const Contact = () => {
                   </div>
                   <div>
                     <p className="font-medium text-foreground">LinkedIn</p>
-                    <p className="text-sm">linkedin.com/in/yourprofile</p>
+                    <p className="text-sm">linkedin.com/in/marcello-lienarta-260328315</p>
                   </div>
                 </a>
 
                 <a
-                  href="https://github.com/yourusername"
+                  href="https://github.com/yeahbois"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="flex items-center gap-4 text-muted-foreground hover:text-primary transition-colors group"
@@ -196,7 +196,7 @@ export const Contact = () => {
                   </div>
                   <div>
                     <p className="font-medium text-foreground">GitHub</p>
-                    <p className="text-sm">github.com/yourusername</p>
+                    <p className="text-sm">github.com/yeahbois</p>
                   </div>
                 </a>
               </div>

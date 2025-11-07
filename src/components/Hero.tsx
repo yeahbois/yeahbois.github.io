@@ -74,7 +74,7 @@ export const Hero = () => {
                   aria-label="LinkedIn Profile"
                 >
                   <a
-                    href="https://linkedin.com/in/yourprofile"
+                    href="https://www.linkedin.com/in/marcello-lienarta-260328315"
                     target="_blank"
                     rel="noopener noreferrer"
                   >
@@ -90,7 +90,7 @@ export const Hero = () => {
                   aria-label="GitHub Profile"
                 >
                   <a
-                    href="https://github.com/yourusername"
+                    href="https://github.com/yeahbois"
                     target="_blank"
                     rel="noopener noreferrer"
                   >
@@ -105,7 +105,7 @@ export const Hero = () => {
                   className="rounded-full"
                   aria-label="Email Contact"
                 >
-                  <a href="mailto:your.email@example.com">
+                  <a href="mailto:marcellolienarta663@gmail.com">
                     <Mail className="h-5 w-5" />
                   </a>
                 </Button>
@@ -117,7 +117,7 @@ export const Hero = () => {
                   className="rounded-full"
                   aria-label="Phone Contact"
                 >
-                  <a href="tel:+1234567890">
+                  <a href="tel:+6285652233323">
                     <Phone className="h-5 w-5" />
                   </a>
                 </Button>
@@ -199,7 +199,7 @@ export const Hero = () => {
                   aria-label="LinkedIn Profile"
                 >
                   <a
-                    href="https://linkedin.com/in/yourprofile"
+                    href="https://www.linkedin.com/in/marcello-lienarta-260328315"
                     target="_blank"
                     rel="noopener noreferrer"
                   >
@@ -215,7 +215,7 @@ export const Hero = () => {
                   aria-label="GitHub Profile"
                 >
                   <a
-                    href="https://github.com/yourusername"
+                    href="https://github.com/yeahbois"
                     target="_blank"
                     rel="noopener noreferrer"
                   >
@@ -230,7 +230,7 @@ export const Hero = () => {
                   className="rounded-full"
                   aria-label="Email Contact"
                 >
-                  <a href="mailto:your.email@example.com">
+                  <a href="mailto:marcellolienarta663@gmail.com">
                     <Mail className="h-5 w-5" />
                   </a>
                 </Button>
@@ -242,7 +242,7 @@ export const Hero = () => {
                   className="rounded-full"
                   aria-label="Phone Contact"
                 >
-                  <a href="tel:+1234567890">
+                  <a href="tel:+6285652233323">
                     <Phone className="h-5 w-5" />
                   </a>
                 </Button>

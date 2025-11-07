@@ -9,13 +9,13 @@ export const Footer = () => {
         <div className="flex flex-col md:flex-row justify-between items-center gap-6">
           {/* Copyright */}
           <div className="text-sm text-muted-foreground">
-            © {currentYear} Your Name. All rights reserved.
+            © {currentYear} YB. All rights reserved.
           </div>
 
           {/* Social Links */}
           <div className="flex items-center gap-4">
             <a
-              href="https://linkedin.com/in/yourprofile"
+              href="https://www.linkedin.com/in/marcello-lienarta-260328315/"
               target="_blank"
               rel="noopener noreferrer"
               className="text-muted-foreground hover:text-primary transition-colors"
@@ -24,7 +24,7 @@ export const Footer = () => {
               <Linkedin className="h-5 w-5" />
             </a>
             <a
-              href="https://github.com/yourusername"
+              href="https://github.com/yeahbois"
               target="_blank"
               rel="noopener noreferrer"
               className="text-muted-foreground hover:text-primary transition-colors"
@@ -33,14 +33,14 @@ export const Footer = () => {
               <Github className="h-5 w-5" />
             </a>
             <a
-              href="mailto:your.email@example.com"
+              href="mailto:marcellolienarta663@gmail.com"
               className="text-muted-foreground hover:text-primary transition-colors"
               aria-label="Email Contact"
             >
               <Mail className="h-5 w-5" />
             </a>
             <a
-              href="tel:+1234567890"
+              href="tel:+6285652233323"
               className="text-muted-foreground hover:text-primary transition-colors"
               aria-label="Phone Contact"
             >

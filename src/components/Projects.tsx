@@ -7,40 +7,46 @@ import { ExternalLink } from "lucide-react";
 
 const projects = [
   {
-    title: "AI Testing Analysis Tool",
-    description: "Real-time sentiment analysis platform using NLP and machine learning to analyze customer feedback across multiple channels.",
+    title: "Student Council Website",
+    description: "The Website of the student council of SMA Negeri Unggulan M.H. Thamrin Dharmandala Sandhyakala's Cabinet",
     image: "gradient-from-blue-500-to-purple-600",
-    tags: ["Python", "TensorFlow", "NLP", "React"],
+    tags: ["PHP", "Laravel", "HTML CSS JS", "Blade.PHP", "SQL"],
+    url: "https://ospkmhthamrin.com",
   },
   {
-    title: "Data Visualization Dashboard",
-    description: "Interactive dashboard for business intelligence with real-time data processing and beautiful visualizations.",
+    title: "Ignotum",
+    description: "A homemade anonymous social media, like secreto.",
     image: "gradient-from-purple-500-to-pink-600",
-    tags: ["React", "D3.js", "Python", "PostgreSQL"],
+    tags: ["Express.js", "EJS", "MongoDB", "HTML CSS JS", "Bootstrap"],
+    url: "https://github.com/yeahbois/ignotum",
   },
   {
-    title: "Predictive Analytics Engine",
-    description: "Machine learning model for forecasting sales trends and market analysis with 95% accuracy.",
+    title: "OpenCV Flask AI",
+    description: "Basic OpenCV project but with flask and realtime AI analyzing for things using websocket.",
     image: "gradient-from-cyan-500-to-blue-600",
-    tags: ["Python", "Scikit-learn", "Pandas", "AWS"],
+    tags: ["Python", "WebSocket", "YOLOV8", "Flask", "Pillow", "HTML CSS JS"],
+    url: "https://github.com/opencv-flaskai",
   },
   {
-    title: "E-commerce Platform",
-    description: "Full-stack e-commerce solution with AI-powered product recommendations and seamless checkout experience.",
+    title: "Portofolio Site",
+    description: "My own portfolio site made with React via Typescript and Vite.",
     image: "gradient-from-green-500-to-teal-600",
-    tags: ["React", "Node.js", "MongoDB", "Stripe"],
+    tags: ["React", "Vite", "TypeScript", "Three.js", "HTML CSS JS", "TailwindCSS"],
+    url: "https://yeahbois.github.io",
   },
   {
-    title: "Computer Vision System",
-    description: "Object detection and classification system for automated quality control in manufacturing.",
+    title: "FaldaBot",
+    description: "A multipurpose Discord bot that have many features. My very first coding project.",
     image: "gradient-from-orange-500-to-red-600",
-    tags: ["Python", "OpenCV", "PyTorch", "Docker"],
+    tags: ["Python", "Discord.py", "Pycord", "APIS"],
+    url: "https://github.com/yeahbois/FaldaBot",
   },
   {
-    title: "Financial Analytics Platform",
-    description: "Comprehensive financial analysis tool with portfolio optimization and risk assessment features.",
+    title: "Quant Coming Soon",
+    description: "My coming soon quantitative programming project using AI.",
     image: "gradient-from-indigo-500-to-purple-600",
-    tags: ["React", "Python", "FastAPI", "TradingView"],
+    tags: ["Python", "Flask", "FastAPI", "TradingView", "Numpy & Pandas", "Matplotlib & Seaborn"],
+    url: "https://github.com/yeahbois",
   },
 ];
 
@@ -62,7 +68,7 @@ export const Projects = () => {
             Featured <span className="gradient-text">Projects</span>
           </h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            A showcase of my work in AI, data analysis, and web development
+            A showcase of my work in AI and web development
           </p>
         </motion.div>
 
@@ -108,7 +114,7 @@ export const Projects = () => {
                     className="w-full group/btn"
                     asChild
                   >
-                    <a href="#hello" onClick={(e) => e.preventDefault()}>
+                    <a href={project.url} target="_blank" rel="noopener noreferrer">
                       View Details
                       <ExternalLink className="ml-2 h-4 w-4 group-hover/btn:translate-x-1 transition-transform" />
                     </a>

@@ -17,7 +17,12 @@ const skills = [
   "Laravel",
   "Blade.PHP",
   "Express.js",
-  "Data Analysis"
+  "Flask",
+  "Numpy & Pandas",
+  "Matplotlib & Seaborn",
+  "Pytorch",
+  "Scikitlearn",
+  "OpenCV"
 ];
 
 export const About = () => {
@@ -62,17 +67,15 @@ export const About = () => {
                 About <span className="gradient-text">Me</span>
               </h2>
               <p className="text-lg text-muted-foreground leading-relaxed mb-6">
-                I'm a passionate <strong>Freelance Multipurpose Developer</strong>,{" "}
-                <strong>Machine Learning</strong>, and{" "}
-                <strong>Web Developer</strong> with a focus on creating
-                innovative solutions that bridge the gap between data and
-                actionable insights.
+                Hey there! Im <strong>YB</strong> — a curious driven{" "}
+                <strong>Web Developer</strong>, and{" "}
+                <strong>Machine Learning Developer</strong>, blending creativity and logic to turn ideas into real-world solutions.
               </p>
               <p className="text-lg text-muted-foreground leading-relaxed">
-                With experience in machine learning, data visualization, and
-                modern web technologies, I help businesses leverage AI and data
-                to drive growth and make informed decisions. Let's build
-                something amazing together.
+                I love working at the intersection of AI, data, and design.
+                Crafting projects that just dont look good, but also make an impact.
+                Im always excited to explore new technologies and keep learning.
+                Lets create something awesome together.
               </p>
             </motion.div>
 
