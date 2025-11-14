@@ -1,0 +1,26 @@
+.iframe-wrapper {
+  display: flex;
+  justify-content: center; /* horizontal center of wrapper */
+  align-items: center;     /* vertical center of wrapper */
+  width: 100%;
+  margin: 5vh 0;           /* spacing above & below */
+  position: relative;
+}
+
+.responsive-iframe {
+  width: min(80vw, 1400px);     /* large on PC */
+  height: min(80vh, 900px);     /* scale with viewport */
+  border: none;
+
+  /* shift slightly right for visual vertical centering */
+  transform: translateX(5%);
+}
+
+/* Mobile tweaks */
+@media (max-width: 768px) {
+  .responsive-iframe {
+    width: min(90vw, 800px);    /* larger on mobile */
+    height: min(60vh, 600px);   /* shorter height to leave room below text */
+    transform: translateX(3%);  /* smaller right shift on phone */
+  }
+}
