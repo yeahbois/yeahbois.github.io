@@ -35,6 +35,13 @@ const projects = [
     url: "https://yeahbois.github.io",
   },
   {
+    title: "Advanced Ticketing System",
+    description: "An advanced ticketing system for Thamrin's Open House event. Using laravel backend, vite react frontend, and python script.",
+    image: "gradient-from-green-500-to-teal-600",
+    tags: ["React", "Vite", "TypeScript", "Python", "PIL", "Laravel", "PHP", "MySQL", "HTML CSS JS", "TailwindCSS"],
+    url: "https://github.com/yeahbois/advanced-ticketing-system",
+  },
+  {
     title: "FaldaBot",
     description: "A multipurpose Discord bot that have many features. My very first coding project.",
     image: "gradient-from-orange-500-to-red-600",
